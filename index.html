@@ -1,103 +1,1164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio of Lior Nizard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        header p {
-            margin: 5px 0 0;
-            font-size: 1.2em;
-        }
-        section {
-            padding: 20px;
-            margin: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            color: #333;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        ul li:last-child {
-            border-bottom: none;
-        }
-        a {
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #007BFF;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lior Nizard — Dynatrace Expert</title>
+  <meta name="description" content="Expert freelance Dynatrace triple certifié — Business Analytics, FinOps & intégration ServiceNow pour grands comptes dont Deloitte.">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #060C22;
+      --surf:    #0D1538;
+      --surf2:   #162048;
+      --primary: #1496FF;
+      --accent:  #00D4F5;
+      --purple:  #7B61FF;
+      --text:    #E2EAF8;
+      --muted:   #6B82B0;
+      --border:  rgba(20,150,255,0.14);
+      --border2: rgba(20,150,255,0.30);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── LANG SWITCHER ── */
+    .lang-switcher {
+      position: fixed;
+      top: 1.1rem;
+      right: 2.5rem;
+      z-index: 200;
+      display: flex;
+      gap: 0.3rem;
+    }
+    .lang-btn {
+      padding: 0.3rem 0.65rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      border-radius: 3px;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .lang-btn:hover:not(.active) {
+      border-color: var(--primary);
+      color: var(--text);
+    }
+
+    [data-fr], [data-en] { display: none; }
+    body.lang-fr [data-fr] { display: revert; }
+    body.lang-en [data-en] { display: revert; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(6,12,34,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--primary); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      margin-right: 7rem;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    #topo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      padding-top: 80px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .hero-name {
+      font-size: clamp(3.2rem, 9vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 0.92;
+      margin-bottom: 1.25rem;
+    }
+    .hero-name .blue { color: var(--primary); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      color: var(--muted);
+      font-weight: 400;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 3rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.9rem;
+      border: 1px solid rgba(0,212,245,0.35);
+      background: rgba(0,212,245,0.06);
+      border-radius: 3px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.75rem;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #0a7de0; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.75rem;
+      border: 1px solid var(--border2);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border-radius: 4px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--primary); background: rgba(20,150,255,0.06); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--surf);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat {
+      padding: 2rem 0;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+
+    .stat-n {
+      display: block;
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      color: var(--primary);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-l {
+      display: block;
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 0; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    .s-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .s-title {
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      text-wrap: balance;
+      margin-bottom: 1.25rem;
+    }
+
+    .s-lead {
+      font-size: 1.02rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    .s-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+
+    /* ── EXPERTISE ── */
+    #expertise { background: var(--bg); }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .exp-card {
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .exp-card::after {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .exp-card:hover { border-color: var(--border2); transform: translateY(-5px); }
+    .exp-card:hover::after { opacity: 1; }
+
+    .exp-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(20,150,255,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+
+    .exp-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.7rem;
+    }
+
+    .exp-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.22rem 0.55rem;
+      background: rgba(20,150,255,0.07);
+      border: 1px solid rgba(20,150,255,0.2);
+      border-radius: 3px;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      font-family: "Cascadia Code","Consolas",monospace;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications { background: var(--surf); }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .cert-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+    .cert-card:hover { border-color: var(--border2); }
+
+    .cert-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,212,245,0.25);
+      background: rgba(0,212,245,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      position: relative;
+    }
+    .cert-ring::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,212,245,0.1);
+    }
+
+    .cert-tier {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .cert-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+    .cert-vendor {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── PROFILE ── */
+    #profile { background: var(--bg); }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .profile-body p {
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+    }
+    .profile-body p strong { color: var(--text); font-weight: 600; }
+
+    .timeline { display: flex; flex-direction: column; }
+
+    .tl-item {
+      display: flex;
+      gap: 1.25rem;
+      padding-bottom: 2.25rem;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 26px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .tl-item:last-child::before { display: none; }
+    .tl-item:last-child { padding-bottom: 0; }
+
+    .tl-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tl-dot::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bg);
+    }
+
+    .tl-year {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .tl-role {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .tl-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── CLIENTS ── */
+    #clients { background: var(--surf); }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .client-table {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .client-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.5rem;
+      background: var(--bg);
+      transition: background 0.2s;
+      border-bottom: 1px solid var(--border);
+    }
+    .client-row:last-child { border-bottom: none; }
+    .client-row:hover { background: var(--surf2); }
+
+    .client-name { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+    .client-sector {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+    .client-pip {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .clients-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .clients-note strong {
+      color: var(--text);
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg); }
+
+    .contact-box {
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-headline {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      text-wrap: balance;
+    }
+    .contact-headline .accent { color: var(--primary); }
+
+    .contact-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      line-height: 1.7;
+    }
+
+    .contact-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 200px;
+    }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 1.75rem 2.5rem; }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer p { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .exp-grid, .certs-grid { grid-template-columns: 1fr; }
+      .profile-grid, .clients-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-box { grid-template-columns: 1fr; gap: 2.5rem; }
+      .s-head { grid-template-columns: 1fr; gap: 1rem; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .contact-btns { flex-direction: row; min-width: unset; flex-wrap: wrap; }
+      .lang-switcher { right: 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <h1>Lior Nizard</h1>
-        <p>DevOps Engineer | Cloud | Automation</p>
-    </header>
+<body class="lang-fr">
 
-    <section>
-        <h2>About Me</h2>
-        <p>I am a passionate DevOps Engineer with experience in cloud infrastructure, automation, and CI/CD pipelines. I thrive on creating efficient and scalable systems that drive innovation and success.</p>
-    </section>
+<!-- LANG SWITCHER -->
+<div class="lang-switcher">
+  <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
 
-    <section>
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="https://github.com/Zeavan23/Moveo/tree/main/PycharmProjects/Devops-moveo">DevOps-M Project</a> - AWS, Terraform, and Docker project for automated cloud infrastructure management.</li>
-            <li><a href="https://github.com/Zeavan23/WOG">WOG Project</a> - Python, Jenkins, and Docker for continuous integration and delivery.</li>
-            <li><a href="https://github.com/Zeavan23/DevOps-W">DevOps W Project</a> - Python, NGINX, and Docker for a robust web server deployment setup.</li>
-        </ul>
-    </section>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Lior<span>.</span>Nizard</a>
+  <ul class="nav-links">
+    <li><a href="#expertise" data-fr>Expertise</a><a href="#expertise" data-en>Expertise</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#profile" data-fr>Profil</a><a href="#profile" data-en>Profile</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <section>
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:nizardlior23@gmail.com">nizardlior23@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/lior-nizard-892660219">Visit my LinkedIn</a></p>
-    </section>
+<main>
 
-    <footer>
-        <p>&copy; 2024 Lior Nizard. All rights reserved.</p>
-    </footer>
+  <!-- HERO -->
+  <section id="hero">
+    <canvas id="topo" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+
+      <div class="eyebrow" data-fr>Expert Freelance Dynatrace</div>
+      <div class="eyebrow" data-en>Dynatrace Freelance Expert</div>
+
+      <h1 class="hero-name">
+        Lior<br><span class="blue">Nizard</span>
+      </h1>
+
+      <p class="hero-sub" data-fr>
+        Business Analytics &amp; FinOps sur Dynatrace.<br>
+        Int&eacute;gration ServiceNow. Grands comptes.<br>
+        5 ans de terrain, background DevOps.
+      </p>
+      <p class="hero-sub" data-en>
+        Business Analytics &amp; FinOps on Dynatrace.<br>
+        ServiceNow integration. Enterprise clients.<br>
+        5 years of field experience, DevOps background.
+      </p>
+
+      <div class="badges">
+        <span class="badge">&#9670; Associate</span>
+        <span class="badge">&#9670; Professional Admin</span>
+        <span class="badge">&#9670; Professional Implementer</span>
+      </div>
+
+      <div class="cta-row">
+        <a href="#contact" class="btn-primary" data-fr>Travailler ensemble &rarr;</a>
+        <a href="#contact" class="btn-primary" data-en>Let&rsquo;s work together &rarr;</a>
+        <a href="#expertise" class="btn-ghost" data-fr>Voir l&rsquo;expertise</a>
+        <a href="#expertise" class="btn-ghost" data-en>Explore expertise</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-n" data-target="5" data-suffix="+">0</span>
+        <span class="stat-l" data-fr>Ann&eacute;es Dynatrace</span>
+        <span class="stat-l" data-en>Years on Dynatrace</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n" data-target="3" data-suffix="">0</span>
+        <span class="stat-l" data-fr>Certifications</span>
+        <span class="stat-l" data-en>Certifications</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n" data-target="10" data-suffix="+">0</span>
+        <span class="stat-l" data-fr>Grands comptes</span>
+        <span class="stat-l" data-en>Enterprise clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n" data-target="3" data-suffix="">0</span>
+        <span class="stat-l" data-fr>Domaines cl&eacute;s</span>
+        <span class="stat-l" data-en>Core specialisations</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERTISE -->
+  <section id="expertise">
+    <div class="container">
+      <div class="s-head reveal">
+        <div>
+          <p class="s-label" data-fr>Domaines d&rsquo;expertise</p>
+          <p class="s-label" data-en>Areas of expertise</p>
+          <h2 class="s-title" data-fr>Ce que je fais<br>vraiment bien</h2>
+          <h2 class="s-title" data-en>What I do<br>exceptionally well</h2>
+        </div>
+        <p class="s-lead" data-fr>Trois sp&eacute;cialisations profondes, construites sur 5 ans de missions en production chez des clients exigeants.</p>
+        <p class="s-lead" data-en>Three deep specialisations, forged over 5 years of production missions for demanding enterprise clients.</p>
+      </div>
+      <div class="exp-grid">
+
+        <div class="exp-card reveal">
+          <div class="exp-icon">&#128202;</div>
+          <div class="exp-title" data-fr>Business Analytics</div>
+          <div class="exp-title" data-en>Business Analytics</div>
+          <p class="exp-desc" data-fr>Instrumentation des flux m&eacute;tier via Dynatrace Business Events. Construction de KPIs actionnables, dashboards d&eacute;cisionnels, et alerting orient&eacute; business &mdash; pas seulement infra.</p>
+          <p class="exp-desc" data-en>Business flow instrumentation via Dynatrace Business Events. Building actionable KPIs, decision-making dashboards, and business-oriented alerting &mdash; not just infrastructure noise.</p>
+          <div class="tags">
+            <span class="tag">BizEvents</span>
+            <span class="tag">DQL</span>
+            <span class="tag">Grail</span>
+            <span class="tag">OpenTelemetry</span>
+            <span class="tag">Notebooks</span>
+          </div>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-icon">&#128176;</div>
+          <div class="exp-title" data-fr>FinOps &amp; Observabilit&eacute; Financi&egrave;re</div>
+          <div class="exp-title" data-en>FinOps &amp; Financial Observability</div>
+          <p class="exp-desc" data-fr>Corr&eacute;lation des co&ucirc;ts cloud avec les m&eacute;triques de performance Dynatrace. Optimisation des licences, justification du ROI, chargeback par application et Business Unit.</p>
+          <p class="exp-desc" data-en>Correlating cloud costs with Dynatrace performance metrics. License optimisation, ROI justification, chargeback by application and Business Unit.</p>
+          <div class="tags">
+            <span class="tag">Cloud Cost</span>
+            <span class="tag">Davis AI</span>
+            <span class="tag">Smartscape</span>
+            <span class="tag">AWS / Azure</span>
+            <span class="tag">Terraform</span>
+          </div>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-icon">&#128279;</div>
+          <div class="exp-title" data-fr>Int&eacute;gration ServiceNow</div>
+          <div class="exp-title" data-en>ServiceNow Integration</div>
+          <p class="exp-desc" data-fr>Orchestration bidirectionnelle Dynatrace &harr; ServiceNow&nbsp;: cr&eacute;ation automatique d&rsquo;incidents, enrichissement des CIs, workflows ITSM d&eacute;clench&eacute;s par des anomalies d&eacute;tect&eacute;es.</p>
+          <p class="exp-desc" data-en>Bidirectional Dynatrace &harr; ServiceNow orchestration: automatic incident creation, CI enrichment, ITSM workflows triggered by detected anomalies.</p>
+          <div class="tags">
+            <span class="tag">ITSM</span>
+            <span class="tag">Workflows</span>
+            <span class="tag">Problem API</span>
+            <span class="tag">CMDB</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="container">
+      <div class="s-head reveal">
+        <div>
+          <p class="s-label" data-fr>Certifications officielles</p>
+          <p class="s-label" data-en>Official certifications</p>
+          <h2 class="s-title" data-fr>Triple certifi&eacute;<br>Dynatrace</h2>
+          <h2 class="s-title" data-en>Triple Dynatrace<br>Certified</h2>
+        </div>
+        <p class="s-lead" data-fr>Les trois niveaux de certification Dynatrace &mdash; de la ma&icirc;trise de la plateforme &agrave; son d&eacute;ploiement et son administration avanc&eacute;e en production.</p>
+        <p class="s-lead" data-en>All three Dynatrace certification levels &mdash; from platform mastery to production deployment and advanced administration.</p>
+      </div>
+      <div class="certs-grid">
+        <div class="cert-card reveal">
+          <div class="cert-ring">&#127891;</div>
+          <div class="cert-tier" data-fr>Niveau 1</div>
+          <div class="cert-tier" data-en>Level 1</div>
+          <div class="cert-name">Associate</div>
+          <div class="cert-vendor">Dynatrace Certified</div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-ring">&#127942;</div>
+          <div class="cert-tier" data-fr>Niveau 2</div>
+          <div class="cert-tier" data-en>Level 2</div>
+          <div class="cert-name">Professional Administrator</div>
+          <div class="cert-vendor">Dynatrace Certified</div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-ring">&#9889;</div>
+          <div class="cert-tier" data-fr>Niveau 3</div>
+          <div class="cert-tier" data-en>Level 3</div>
+          <div class="cert-name">Professional Implementer</div>
+          <div class="cert-vendor">Dynatrace Certified</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile">
+    <div class="container">
+      <div class="s-head reveal">
+        <div>
+          <p class="s-label" data-fr>Profil</p>
+          <p class="s-label" data-en>Profile</p>
+          <h2 class="s-title" data-fr>5 ans. Un seul<br>&eacute;cosyst&egrave;me.</h2>
+          <h2 class="s-title" data-en>5 years. One<br>ecosystem.</h2>
+        </div>
+        <p class="s-lead" data-fr>Une expertise construite en profondeur, pas en largeur &mdash; avec un ancrage terrain DevOps qui change la fa&ccedil;on d&rsquo;aborder l&rsquo;observabilit&eacute;.</p>
+        <p class="s-lead" data-en>Expertise built in depth, not breadth &mdash; with a DevOps foundation that reshapes how observability is approached.</p>
+      </div>
+      <div class="profile-grid">
+        <div class="profile-body reveal">
+          <p data-fr>Consultant freelance sp&eacute;cialis&eacute; sur Dynatrace depuis <strong>5 ans</strong>, avec un background <strong>DevOps &amp; Cloud</strong> qui me permet de parler aussi bien aux &eacute;quipes d&rsquo;infrastructure qu&rsquo;aux directions m&eacute;tier.</p>
+          <p data-en>Dynatrace freelance consultant for <strong>5 years</strong>, with a <strong>DevOps &amp; Cloud</strong> background that lets me speak equally to infrastructure teams and business stakeholders.</p>
+
+          <p data-fr>Ma conviction&nbsp;: l&rsquo;observabilit&eacute; a de la valeur quand elle parle business. Pas quand elle g&eacute;n&egrave;re du bruit. Je me suis sp&eacute;cialis&eacute; dans la traduction des signaux techniques en <strong>insights d&eacute;cisionnels</strong> &mdash; KPIs, FinOps, alerting m&eacute;tier.</p>
+          <p data-en>My conviction: observability delivers value when it speaks business. Not when it generates noise. I specialise in translating technical signals into <strong>actionable business insights</strong> &mdash; KPIs, FinOps, business alerting.</p>
+
+          <p data-fr>J&rsquo;interviens en mode conseil, mise en &oelig;uvre ou accompagnement sur la dur&eacute;e. <strong>Dynatrace SaaS, Managed, et tout l&rsquo;&eacute;cosyst&egrave;me cloud AWS / Azure / GCP.</strong></p>
+          <p data-en>I work in advisory, implementation, or long-term support modes. <strong>Dynatrace SaaS, Managed, and the full AWS / Azure / GCP cloud ecosystem.</strong></p>
+        </div>
+        <div class="timeline reveal">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-year">2024 &mdash; <span data-fr>Pr&eacute;sent</span><span data-en>Present</span></div>
+              <div class="tl-role" data-fr>Consultant Dynatrace Senior &mdash; Freelance</div>
+              <div class="tl-role" data-en>Senior Dynatrace Consultant &mdash; Freelance</div>
+              <div class="tl-desc" data-fr>Missions grands comptes. Business Analytics, FinOps, int&eacute;gration ServiceNow. Clients dans les secteurs finance, conseil et industrie.</div>
+              <div class="tl-desc" data-en>Enterprise engagements. Business Analytics, FinOps, ServiceNow integration. Clients in finance, consulting and manufacturing.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-year">2022 &mdash; 2024</div>
+              <div class="tl-role" data-fr>Expert Observabilit&eacute; &mdash; ESN Tier 1</div>
+              <div class="tl-role" data-en>Observability Expert &mdash; Tier 1 consulting firm</div>
+              <div class="tl-desc" data-fr>D&eacute;ploiements Dynatrace &agrave; grande &eacute;chelle. Delivery chez Deloitte et autres grands comptes. Obtention des certifications Professional.</div>
+              <div class="tl-desc" data-en>Large-scale Dynatrace deployments. Delivery at Deloitte and other major accounts. Obtained both Professional certifications.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-year">2020 &mdash; 2022</div>
+              <div class="tl-role">DevOps Engineer</div>
+              <div class="tl-desc" data-fr>Infrastructure cloud, CI/CD, monitoring. Transition progressive vers la sp&eacute;cialisation observabilit&eacute; Dynatrace.</div>
+              <div class="tl-desc" data-en>Cloud infrastructure, CI/CD, monitoring. Gradual transition toward Dynatrace observability specialisation.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-year">2019</div>
+              <div class="tl-role" data-fr>Certification Dynatrace Associate</div>
+              <div class="tl-role" data-en>Dynatrace Associate Certification</div>
+              <div class="tl-desc" data-fr>Point de d&eacute;part d&rsquo;une sp&eacute;cialisation qui dure.</div>
+              <div class="tl-desc" data-en>The starting point of a lasting specialisation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section id="clients">
+    <div class="container">
+      <div class="s-head reveal">
+        <div>
+          <p class="s-label" data-fr>R&eacute;f&eacute;rences clients</p>
+          <p class="s-label" data-en>Client references</p>
+          <h2 class="s-title" data-fr>Des missions qui<br>comptent</h2>
+          <h2 class="s-title" data-en>Missions that<br>matter</h2>
+        </div>
+        <p class="s-lead" data-fr>Interventions chez des organisations o&ugrave; la fiabilit&eacute; et la performance ont un impact direct sur le chiffre d&rsquo;affaires.</p>
+        <p class="s-lead" data-en>Engagements with organisations where reliability and performance have a direct impact on revenue.</p>
+      </div>
+      <div class="clients-grid">
+        <div class="client-table reveal">
+          <div class="client-row">
+            <div>
+              <div class="client-name">Deloitte</div>
+              <div class="client-sector">Consulting &amp; Audit</div>
+            </div>
+            <div class="client-pip"></div>
+          </div>
+          <div class="client-row">
+            <div>
+              <div class="client-name" data-fr>Confidentiel &mdash; Grand compte bancaire</div>
+              <div class="client-name" data-en>Confidential &mdash; Major banking group</div>
+              <div class="client-sector" data-fr>Banque &amp; Finance</div>
+              <div class="client-sector" data-en>Banking &amp; Finance</div>
+            </div>
+            <div class="client-pip"></div>
+          </div>
+          <div class="client-row">
+            <div>
+              <div class="client-name" data-fr>Confidentiel &mdash; Groupe assurance</div>
+              <div class="client-name" data-en>Confidential &mdash; Insurance group</div>
+              <div class="client-sector" data-fr>Assurance</div>
+              <div class="client-sector" data-en>Insurance</div>
+            </div>
+            <div class="client-pip"></div>
+          </div>
+          <div class="client-row">
+            <div>
+              <div class="client-name" data-fr>Confidentiel &mdash; Acteur industrie</div>
+              <div class="client-name" data-en>Confidential &mdash; Manufacturing group</div>
+              <div class="client-sector" data-fr>Industrie</div>
+              <div class="client-sector" data-en>Manufacturing</div>
+            </div>
+            <div class="client-pip"></div>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="clients-note">
+            <strong data-fr>Confidentialit&eacute; &amp; discr&eacute;tion</strong>
+            <strong data-en>Confidentiality &amp; discretion</strong>
+            <span data-fr>La majorit&eacute; de mes missions s&rsquo;inscrivent dans des contextes sensibles &mdash; infrastructures critiques, donn&eacute;es financi&egrave;res, environnements r&eacute;glement&eacute;s. Je ne cite que les clients ayant donn&eacute; leur accord explicite. Des r&eacute;f&eacute;rences d&eacute;taill&eacute;es sont disponibles sur demande.</span>
+            <span data-en>Most of my engagements involve sensitive contexts &mdash; critical infrastructure, financial data, regulated environments. I only name clients who have given explicit consent. Detailed references available on request.</span>
+          </p>
+          <br>
+          <p class="clients-note">
+            <span data-fr>J&rsquo;interviens aussi bien en direct avec les &eacute;quipes DSI qu&rsquo;en sous-traitance d&rsquo;ESN et cabinets de conseil.</span>
+            <span data-en>I work directly with IT teams or as a subcontractor for consulting firms and systems integrators.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-box reveal">
+        <div>
+          <h2 class="contact-headline" data-fr>Un projet Dynatrace&nbsp;?<br><span class="accent">Parlons-en.</span></h2>
+          <h2 class="contact-headline" data-en>A Dynatrace project?<br><span class="accent">Let&rsquo;s talk.</span></h2>
+          <p class="contact-sub" data-fr>Disponible pour des missions de conseil, mise en &oelig;uvre et accompagnement. R&eacute;ponse sous 24h.</p>
+          <p class="contact-sub" data-en>Available for advisory, implementation and long-term support missions. Response within 24h.</p>
+        </div>
+        <div class="contact-btns">
+          <a href="mailto:lior@thema.co.il" class="btn-primary" data-fr>Envoyer un email &rarr;</a>
+          <a href="mailto:lior@thema.co.il" class="btn-primary" data-en>Send an email &rarr;</a>
+          <a href="https://www.linkedin.com/in/lior-nizard" target="_blank" rel="noopener" class="btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p data-fr>&copy; 2026 Lior Nizard &mdash; Consultant Dynatrace Freelance</p>
+    <p data-en>&copy; 2026 Lior Nizard &mdash; Dynatrace Freelance Consultant</p>
+    <p data-fr>Triple certifi&eacute; &middot; Business Analytics &middot; FinOps &middot; ServiceNow</p>
+    <p data-en>Triple certified &middot; Business Analytics &middot; FinOps &middot; ServiceNow</p>
+  </div>
+</footer>
+
+<script>
+// ── LANG SWITCHER ──
+function setLang(l) {
+  document.body.className = 'lang-' + l;
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.textContent.toLowerCase() === l);
+  });
+  try { localStorage.setItem('lang', l); } catch(e) {}
+}
+(function () {
+  try {
+    var saved = localStorage.getItem('lang');
+    if (saved === 'en') setLang('en');
+  } catch(e) {}
+})();
+
+// ── TOPOLOGY CANVAS ──
+(function () {
+  var canvas = document.getElementById('topo');
+  var ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var COLORS = ['#1496FF', '#00D4F5', '#7B61FF'];
+  var nodes = [];
+  for (var i = 0; i < 22; i++) {
+    nodes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: (Math.random() - 0.5) * 0.22,
+      r: Math.random() * 2.5 + 1.5,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    });
+  }
+
+  var packets = [];
+  var frame = 0;
+
+  function spawnPackets() {
+    if (packets.length >= 18) return;
+    for (var i = 0; i < nodes.length && packets.length < 18; i++) {
+      for (var j = i + 1; j < nodes.length; j++) {
+        var dx = nodes[i].x - nodes[j].x;
+        var dy = nodes[i].y - nodes[j].y;
+        if (Math.sqrt(dx*dx + dy*dy) < 190 && Math.random() < 0.04) {
+          var dir = Math.random() < 0.5;
+          packets.push({
+            from: dir ? nodes[i] : nodes[j],
+            to:   dir ? nodes[j] : nodes[i],
+            t: 0,
+            speed: 0.006 + Math.random() * 0.005,
+          });
+        }
+      }
+    }
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    frame++;
+
+    nodes.forEach(function(n) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
+      if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+    });
+
+    for (var i = 0; i < nodes.length; i++) {
+      for (var j = i + 1; j < nodes.length; j++) {
+        var dx = nodes[i].x - nodes[j].x;
+        var dy = nodes[i].y - nodes[j].y;
+        var d  = Math.sqrt(dx*dx + dy*dy);
+        if (d < 190) {
+          ctx.strokeStyle = 'rgba(20,150,255,' + ((1 - d / 190) * 0.22) + ')';
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    if (frame % 50 === 0) spawnPackets();
+
+    for (var k = packets.length - 1; k >= 0; k--) {
+      var p = packets[k];
+      p.t += p.speed;
+      if (p.t >= 1) { packets.splice(k, 1); continue; }
+      var px = p.from.x + (p.to.x - p.from.x) * p.t;
+      var py = p.from.y + (p.to.y - p.from.y) * p.t;
+      ctx.fillStyle = '#00D4F5';
+      ctx.beginPath();
+      ctx.arc(px, py, 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    nodes.forEach(function(n) {
+      var g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 5);
+      g.addColorStop(0, n.color + '55');
+      g.addColorStop(1, n.color + '00');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = n.color;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(tick);
+  }
+
+  tick();
+})();
+
+// ── SCROLL REVEAL ──
+(function () {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        setTimeout(function() { e.target.classList.add('in'); }, 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+})();
+
+// ── COUNTERS ──
+(function () {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var target = parseInt(el.dataset.target, 10);
+      var suf = el.dataset.suffix || '';
+      var cur = 0;
+      var step = Math.max(1, Math.floor(target / 20));
+      var iv = setInterval(function() {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur + suf;
+        if (cur >= target) clearInterval(iv);
+      }, 55);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-n[data-target]').forEach(function(el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>
-
