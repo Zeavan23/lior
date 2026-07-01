@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lior Nizard — Dynatrace Expert</title>
   <meta name="description" content="Expert freelance Dynatrace triple certifié — Business Analytics, FinOps & intégration ServiceNow pour grands comptes dont Deloitte.">
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -16,6 +15,8 @@
       --primary: #1496FF;
       --accent:  #00D4F5;
       --purple:  #7B61FF;
+      --orange:  #FF8C42;
+      --green:   #00C48C;
       --text:    #E2EAF8;
       --muted:   #6B82B0;
       --border:  rgba(20,150,255,0.14);
@@ -23,7 +24,6 @@
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -34,614 +34,523 @@
 
     /* ── LANG SWITCHER ── */
     .lang-switcher {
-      position: fixed;
-      top: 1.1rem;
-      right: 2.5rem;
-      z-index: 200;
-      display: flex;
-      gap: 0.3rem;
+      position: fixed; top: 1.1rem; right: 2.5rem;
+      z-index: 200; display: flex; gap: 0.3rem;
     }
     .lang-btn {
-      padding: 0.3rem 0.65rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      border-radius: 3px;
-      border: 1px solid var(--border2);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.2s;
+      padding: 0.3rem 0.65rem; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; border-radius: 3px;
+      border: 1px solid var(--border2); background: transparent;
+      color: var(--muted); cursor: pointer; transition: all 0.2s;
     }
-    .lang-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #fff;
-    }
-    .lang-btn:hover:not(.active) {
-      border-color: var(--primary);
-      color: var(--text);
-    }
+    .lang-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .lang-btn:hover:not(.active) { border-color: var(--primary); color: var(--text); }
 
-    [data-fr], [data-en] { display: none; }
-    body.lang-fr [data-fr] { display: revert; }
-    body.lang-en [data-en] { display: revert; }
+    /* Lang switching — explicit display per tag type */
+    .t-fr, .t-en { display: none !important; }
+    body.lang-fr .t-fr { display: revert !important; }
+    body.lang-en .t-en { display: revert !important; }
+    body.lang-fr a.t-fr, body.lang-en a.t-en { display: inline-flex !important; }
+    body.lang-fr p.t-fr, body.lang-en p.t-en { display: block !important; }
+    body.lang-fr h2.t-fr, body.lang-en h2.t-en { display: block !important; }
+    body.lang-fr div.t-fr, body.lang-en div.t-en { display: block !important; }
+    body.lang-fr span.t-fr, body.lang-en span.t-en { display: inline !important; }
+    body.lang-fr li.t-fr, body.lang-en li.t-en { display: list-item !important; }
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 1.1rem 2.5rem;
-      background: rgba(6,12,34,0.88);
-      backdrop-filter: blur(14px);
+      background: rgba(6,12,34,0.88); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-
-    .nav-logo {
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      text-decoration: none;
-    }
+    .nav-logo { font-size: 1rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); text-decoration: none; }
     .nav-logo span { color: var(--primary); }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-      margin-right: 7rem;
-    }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; margin-right: 7rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.09em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--text); }
 
     /* ── HERO ── */
-    #hero {
-      position: relative;
-      height: 100vh;
-      min-height: 680px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    #topo {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.5;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-      padding-top: 80px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.75rem;
-    }
-    .eyebrow::before {
-      content: '';
-      width: 28px;
-      height: 1px;
-      background: var(--accent);
-      display: block;
-      flex-shrink: 0;
-    }
-
-    .hero-name {
-      font-size: clamp(3.2rem, 9vw, 7rem);
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      line-height: 0.92;
-      margin-bottom: 1.25rem;
-    }
+    #hero { position: relative; height: 100vh; min-height: 680px; display: flex; align-items: center; overflow: hidden; }
+    #topo { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; }
+    .hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; padding-top: 80px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.75rem; }
+    .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent); display: block; flex-shrink: 0; }
+    .hero-name { font-size: clamp(3.2rem, 9vw, 7rem); font-weight: 800; letter-spacing: -0.05em; line-height: 0.92; margin-bottom: 1.25rem; }
     .hero-name .blue { color: var(--primary); }
-
-    .hero-sub {
-      font-size: clamp(1rem, 2.2vw, 1.2rem);
-      color: var(--muted);
-      font-weight: 400;
-      max-width: 540px;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
-    }
-
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin-bottom: 3rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.45rem 0.9rem;
-      border: 1px solid rgba(0,212,245,0.35);
-      background: rgba(0,212,245,0.06);
-      border-radius: 3px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.9rem 1.75rem;
-      background: var(--primary);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.88rem;
-      border-radius: 4px;
-      transition: background 0.2s, transform 0.2s;
-    }
+    .hero-sub { font-size: clamp(1rem, 2.2vw, 1.2rem); color: var(--muted); max-width: 540px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 3rem; }
+    .badge { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.45rem 0.9rem; border: 1px solid rgba(0,212,245,0.35); background: rgba(0,212,245,0.06); border-radius: 3px; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+    .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.75rem; background: var(--primary); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.88rem; border-radius: 4px; transition: background 0.2s, transform 0.2s; }
     .btn-primary:hover { background: #0a7de0; transform: translateY(-2px); }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.9rem 1.75rem;
-      border: 1px solid var(--border2);
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.88rem;
-      border-radius: 4px;
-      transition: border-color 0.2s, background 0.2s;
-    }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 1.75rem; border: 1px solid var(--border2); color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.88rem; border-radius: 4px; transition: border-color 0.2s, background 0.2s; }
     .btn-ghost:hover { border-color: var(--primary); background: rgba(20,150,255,0.06); }
 
     /* ── STATS BAR ── */
-    .stats-bar {
-      background: var(--surf);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .stats-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .stat {
-      padding: 2rem 0;
-      text-align: center;
-      border-right: 1px solid var(--border);
-    }
+    .stats-bar { background: var(--surf); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat { padding: 2rem 0; text-align: center; border-right: 1px solid var(--border); }
     .stat:last-child { border-right: none; }
-
-    .stat-n {
-      display: block;
-      font-size: 2.6rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      color: var(--primary);
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-    .stat-l {
-      display: block;
-      font-size: 0.74rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
+    .stat-n { display: block; font-size: 2.6rem; font-weight: 800; letter-spacing: -0.05em; color: var(--primary); line-height: 1; font-variant-numeric: tabular-nums; }
+    .stat-l { display: block; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
 
     /* ── SECTIONS ── */
     section { padding: 6rem 0; }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
-
-    .s-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 0.6rem;
-    }
-
-    .s-title {
-      font-size: clamp(1.8rem, 4vw, 2.75rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      text-wrap: balance;
-      margin-bottom: 1.25rem;
-    }
-
-    .s-lead {
-      font-size: 1.02rem;
-      color: var(--muted);
-      max-width: 560px;
-      line-height: 1.75;
-    }
-
-    .s-head {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: end;
-      margin-bottom: 4rem;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+    .s-label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.6rem; }
+    .s-title { font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; text-wrap: balance; margin-bottom: 1.25rem; }
+    .s-lead { font-size: 1.02rem; color: var(--muted); max-width: 560px; line-height: 1.75; }
+    .s-head { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 4rem; }
 
     /* ── EXPERTISE ── */
     #expertise { background: var(--bg); }
-
-    .exp-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-
-    .exp-card {
-      background: var(--surf);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .exp-card::after {
-      content: '';
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
+    .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .exp-card { background: var(--surf); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+    .exp-card::after { content: ''; position: absolute; inset: 0 0 auto 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); opacity: 0; transition: opacity 0.3s; }
     .exp-card:hover { border-color: var(--border2); transform: translateY(-5px); }
     .exp-card:hover::after { opacity: 1; }
-
-    .exp-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(20,150,255,0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.3rem;
-    }
-
-    .exp-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.7rem;
-    }
-
-    .exp-desc {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
-    }
-
+    .exp-icon { width: 44px; height: 44px; background: rgba(20,150,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.3rem; }
+    .exp-title { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.7rem; }
+    .exp-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tag {
-      font-size: 0.7rem;
-      padding: 0.22rem 0.55rem;
-      background: rgba(20,150,255,0.07);
-      border: 1px solid rgba(20,150,255,0.2);
-      border-radius: 3px;
-      color: var(--primary);
-      letter-spacing: 0.04em;
-      font-family: "Cascadia Code","Consolas",monospace;
-    }
+    .tag { font-size: 0.7rem; padding: 0.22rem 0.55rem; background: rgba(20,150,255,0.07); border: 1px solid rgba(20,150,255,0.2); border-radius: 3px; color: var(--primary); letter-spacing: 0.04em; font-family: "Cascadia Code","Consolas",monospace; }
 
     /* ── CERTIFICATIONS ── */
     #certifications { background: var(--surf); }
-
-    .certs-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-
-    .cert-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: border-color 0.3s;
-    }
+    .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .cert-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 2.5rem 2rem; display: flex; flex-direction: column; align-items: center; text-align: center; transition: border-color 0.3s; }
     .cert-card:hover { border-color: var(--border2); }
-
-    .cert-ring {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 2px solid rgba(0,212,245,0.25);
-      background: rgba(0,212,245,0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      position: relative;
-    }
-    .cert-ring::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 1px solid rgba(0,212,245,0.1);
-    }
-
-    .cert-tier {
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-    .cert-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.4rem;
-    }
-    .cert-vendor {
-      font-size: 0.8rem;
-      color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
+    .cert-ring { width: 80px; height: 80px; border-radius: 50%; border: 2px solid rgba(0,212,245,0.25); background: rgba(0,212,245,0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 2rem; position: relative; }
+    .cert-ring::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid rgba(0,212,245,0.1); }
+    .cert-tier { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .cert-name { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+    .cert-vendor { font-size: 0.8rem; color: var(--accent); font-weight: 600; letter-spacing: 0.04em; }
 
     /* ── PROFILE ── */
     #profile { background: var(--bg); }
-
-    .profile-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
-    }
-
-    .profile-body p {
-      color: var(--muted);
-      line-height: 1.85;
-      margin-bottom: 1.25rem;
-      font-size: 0.95rem;
-    }
+    .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .profile-body p { color: var(--muted); line-height: 1.85; margin-bottom: 1.25rem; font-size: 0.95rem; }
     .profile-body p strong { color: var(--text); font-weight: 600; }
-
     .timeline { display: flex; flex-direction: column; }
-
-    .tl-item {
-      display: flex;
-      gap: 1.25rem;
-      padding-bottom: 2.25rem;
-      position: relative;
-    }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: 11px;
-      top: 26px;
-      bottom: 0;
-      width: 1px;
-      background: var(--border);
-    }
+    .tl-item { display: flex; gap: 1.25rem; padding-bottom: 2.25rem; position: relative; }
+    .tl-item::before { content: ''; position: absolute; left: 11px; top: 26px; bottom: 0; width: 1px; background: var(--border); }
     .tl-item:last-child::before { display: none; }
     .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot { width: 24px; height: 24px; border-radius: 50%; background: var(--primary); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; }
+    .tl-dot::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--bg); }
+    .tl-year { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--primary); font-weight: 700; margin-bottom: 0.2rem; }
+    .tl-role { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
 
-    .tl-dot {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--primary);
-      flex-shrink: 0;
-      margin-top: 1px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .tl-dot::after {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+    /* ══════════════════════════════════════════
+       ── SHOWCASE SECTION ──
+    ══════════════════════════════════════════ */
+    #showcase { background: var(--surf); }
+
+    .showcase-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    /* ── BUSINESS FLOW card ── */
+    .sc-card {
       background: var(--bg);
-    }
-
-    .tl-year {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      color: var(--primary);
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-    }
-    .tl-role {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .tl-desc {
-      font-size: 0.84rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    /* ── CLIENTS ── */
-    #clients { background: var(--surf); }
-
-    .clients-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .client-table {
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
+      padding: 2rem 2rem 1.5rem;
+      position: relative;
       overflow: hidden;
     }
 
-    .client-row {
+    .sc-card-header {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 1rem;
-      padding: 1.1rem 1.5rem;
-      background: var(--bg);
-      transition: background 0.2s;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .client-row:last-child { border-bottom: none; }
-    .client-row:hover { background: var(--surf2); }
 
-    .client-name { font-size: 0.9rem; font-weight: 700; color: var(--text); }
-    .client-sector {
-      font-size: 0.72rem;
+    .sc-chip {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-    }
-    .client-pip {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .clients-note {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-    .clients-note strong {
-      color: var(--text);
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
+      color: var(--accent);
       font-weight: 700;
     }
 
-    /* ── CONTACT ── */
-    #contact { background: var(--bg); }
+    .sc-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
 
-    .contact-box {
-      background: var(--surf);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 4rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4rem;
+    .sc-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .sc-live::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-green 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse-green {
+      0%,100% { box-shadow: 0 0 0 0 rgba(0,196,140,0.5); }
+      50% { box-shadow: 0 0 0 5px rgba(0,196,140,0); }
+    }
+
+    /* Funnel */
+    .funnel-outer {
+      perspective: 900px;
+      margin-bottom: 0.5rem;
+    }
+
+    .funnel-wrap {
+      transform: rotateX(-10deg);
+      transform-style: preserve-3d;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
       align-items: center;
     }
 
-    .contact-headline {
-      font-size: clamp(1.5rem, 3vw, 2.1rem);
+    .f-stage {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+      height: 42px;
+      position: relative;
+    }
+
+    .f-bar-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-radius: 3px;
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .f-bar-wrap:hover {
+      box-shadow: 0 0 20px rgba(20,150,255,0.3);
+    }
+
+    .f-fill {
+      position: absolute;
+      inset: 0;
+      border-radius: 3px;
+      transition: opacity 0.3s;
+    }
+
+    .f-stage-info {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .f-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .f-count {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .f-drop {
+      font-size: 0.65rem;
+      color: rgba(255,140,66,0.9);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.02em;
+    }
+
+    .f-particles-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 3px;
+    }
+
+    .funnel-legend {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .f-leg-item {
+      text-align: center;
+    }
+    .f-leg-n {
+      display: block;
+      font-size: 1.2rem;
       font-weight: 800;
       letter-spacing: -0.04em;
-      line-height: 1.15;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .f-leg-l { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* Bottom row: Snow + FinOps */
+    .sc-bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* ── ServiceNow diagram ── */
+    .snow-diagram {
+      width: 100%;
+      position: relative;
+    }
+
+    .snow-svg {
+      width: 100%;
+      overflow: visible;
+    }
+
+    .snow-node rect {
+      fill: var(--surf2);
+      stroke: var(--border2);
+      stroke-width: 1;
+      rx: 6;
+    }
+    .snow-node.dt rect { stroke: var(--primary); fill: rgba(20,150,255,0.08); }
+    .snow-node.sn rect { stroke: #8B5CF6; fill: rgba(139,92,246,0.08); }
+    .snow-node.cmdb rect { stroke: var(--accent); fill: rgba(0,212,245,0.08); }
+    .snow-node.prob rect { stroke: var(--orange); fill: rgba(255,140,66,0.08); }
+
+    .snow-node text {
+      fill: var(--text);
+      font-size: 11px;
+      font-weight: 700;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    .snow-node .sub {
+      fill: var(--muted);
+      font-size: 9px;
+      font-weight: 400;
+    }
+
+    .snow-path {
+      fill: none;
+      stroke-width: 1.5;
+      stroke-dasharray: 6 4;
+      stroke-linecap: round;
+    }
+    .snow-path.dt-prob { stroke: var(--orange); }
+    .snow-path.prob-sn { stroke: #8B5CF6; }
+    .snow-path.sn-cmdb { stroke: var(--accent); }
+    .snow-path.cmdb-dt { stroke: var(--primary); }
+
+    .pkt {
+      r: 3.5;
+    }
+    .pkt-orange { fill: var(--orange); }
+    .pkt-purple { fill: #8B5CF6; }
+    .pkt-cyan   { fill: var(--accent); }
+    .pkt-blue   { fill: var(--primary); }
+
+    .snow-status {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .snow-evt {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .snow-evt.show { opacity: 1; transform: none; }
+    .snow-evt-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .snow-evt strong { color: var(--text); }
+
+    /* ── FinOps chart ── */
+    #finops-canvas {
+      width: 100%;
+      height: 180px;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .finops-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .fkpi {
+      text-align: center;
+    }
+    .fkpi-n {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+    }
+    .fkpi-n.orange { color: var(--orange); }
+    .fkpi-n.green  { color: var(--green); }
+    .fkpi-n.blue   { color: var(--primary); }
+    .fkpi-l { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+    /* ── CLIENTS ── */
+    #clients { background: var(--bg); }
+    .clients-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .client-table { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .client-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.5rem; background: var(--surf); transition: background 0.2s; border-bottom: 1px solid var(--border); }
+    .client-row:last-child { border-bottom: none; }
+    .client-row:hover { background: var(--surf2); }
+    .client-name { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+    .client-sector { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+    .client-pip { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .clients-note { font-size: 0.9rem; color: var(--muted); line-height: 1.8; }
+    .clients-note strong { color: var(--text); display: block; font-size: 1rem; margin-bottom: 0.75rem; font-weight: 700; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surf); }
+
+    .contact-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr auto;
+    }
+
+    .contact-left {
+      padding: 3.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .contact-headline {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
       text-wrap: balance;
+      margin-bottom: 0.75rem;
     }
     .contact-headline .accent { color: var(--primary); }
 
     .contact-sub {
       font-size: 0.9rem;
       color: var(--muted);
-      margin-top: 0.75rem;
       line-height: 1.7;
+      margin-bottom: 2rem;
     }
 
-    .contact-btns {
+    .contact-meta {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      min-width: 200px;
+      gap: 0.6rem;
     }
+
+    .contact-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    .contact-meta-row .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-green 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .contact-meta-row .dot.blue { background: var(--primary); animation: none; }
+    .contact-meta-row strong { color: var(--text); }
+
+    .contact-right {
+      padding: 3.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      min-width: 240px;
+    }
+
+    .contact-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .cstat {
+      background: var(--surf);
+      padding: 1rem;
+      text-align: center;
+    }
+    .cstat-n { display: block; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.04em; color: var(--primary); font-variant-numeric: tabular-nums; }
+    .cstat-l { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 
     /* ── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 1.75rem 2.5rem; }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
     footer p { font-size: 0.78rem; color: var(--muted); }
 
     /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .sc-bottom-row { grid-template-columns: 1fr; }
+      .contact-box { grid-template-columns: 1fr; }
+      .contact-left { border-right: none; border-bottom: 1px solid var(--border); }
+      .contact-stats { grid-template-columns: repeat(4, 1fr); }
+    }
     @media (max-width: 900px) {
       .exp-grid, .certs-grid { grid-template-columns: 1fr; }
       .profile-grid, .clients-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .contact-box { grid-template-columns: 1fr; gap: 2.5rem; }
       .s-head { grid-template-columns: 1fr; gap: 1rem; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
-      .contact-btns { flex-direction: row; min-width: unset; flex-wrap: wrap; }
       .lang-switcher { right: 1.5rem; }
     }
-
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; }
       * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -650,19 +559,16 @@
 </head>
 <body class="lang-fr">
 
-<!-- LANG SWITCHER -->
 <div class="lang-switcher">
   <button class="lang-btn active" onclick="setLang('fr')">FR</button>
   <button class="lang-btn" onclick="setLang('en')">EN</button>
 </div>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Lior<span>.</span>Nizard</a>
   <ul class="nav-links">
-    <li><a href="#expertise" data-fr>Expertise</a><a href="#expertise" data-en>Expertise</a></li>
-    <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#profile" data-fr>Profil</a><a href="#profile" data-en>Profile</a></li>
+    <li><a href="#expertise" class="t-fr">Expertise</a><a href="#expertise" class="t-en">Expertise</a></li>
+    <li><a href="#showcase" class="t-fr">Demos</a><a href="#showcase" class="t-en">Demos</a></li>
     <li><a href="#clients">Clients</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -674,36 +580,21 @@
   <section id="hero">
     <canvas id="topo" aria-hidden="true"></canvas>
     <div class="hero-inner">
-
-      <div class="eyebrow" data-fr>Expert Freelance Dynatrace</div>
-      <div class="eyebrow" data-en>Dynatrace Freelance Expert</div>
-
-      <h1 class="hero-name">
-        Lior<br><span class="blue">Nizard</span>
-      </h1>
-
-      <p class="hero-sub" data-fr>
-        Business Analytics &amp; FinOps sur Dynatrace.<br>
-        Int&eacute;gration ServiceNow. Grands comptes.<br>
-        5 ans de terrain, background DevOps.
-      </p>
-      <p class="hero-sub" data-en>
-        Business Analytics &amp; FinOps on Dynatrace.<br>
-        ServiceNow integration. Enterprise clients.<br>
-        5 years of field experience, DevOps background.
-      </p>
-
+      <div class="eyebrow t-fr">Expert Freelance Dynatrace</div>
+      <div class="eyebrow t-en">Dynatrace Freelance Expert</div>
+      <h1 class="hero-name">Lior<br><span class="blue">Nizard</span></h1>
+      <p class="hero-sub t-fr">Business Analytics &amp; FinOps sur Dynatrace.<br>Int&eacute;gration ServiceNow. Grands comptes.<br>5 ans de terrain, background DevOps.</p>
+      <p class="hero-sub t-en">Business Analytics &amp; FinOps on Dynatrace.<br>ServiceNow integration. Enterprise clients.<br>5 years of field experience, DevOps background.</p>
       <div class="badges">
         <span class="badge">&#9670; Associate</span>
         <span class="badge">&#9670; Professional Admin</span>
         <span class="badge">&#9670; Professional Implementer</span>
       </div>
-
       <div class="cta-row">
-        <a href="#contact" class="btn-primary" data-fr>Travailler ensemble &rarr;</a>
-        <a href="#contact" class="btn-primary" data-en>Let&rsquo;s work together &rarr;</a>
-        <a href="#expertise" class="btn-ghost" data-fr>Voir l&rsquo;expertise</a>
-        <a href="#expertise" class="btn-ghost" data-en>Explore expertise</a>
+        <a href="#contact" class="btn-primary t-fr">Travailler ensemble &rarr;</a>
+        <a href="#contact" class="btn-primary t-en">Let&rsquo;s work together &rarr;</a>
+        <a href="#showcase" class="btn-ghost t-fr">Voir les demos</a>
+        <a href="#showcase" class="btn-ghost t-en">See live demos</a>
       </div>
     </div>
   </section>
@@ -713,23 +604,23 @@
     <div class="stats-inner">
       <div class="stat">
         <span class="stat-n" data-target="5" data-suffix="+">0</span>
-        <span class="stat-l" data-fr>Ann&eacute;es Dynatrace</span>
-        <span class="stat-l" data-en>Years on Dynatrace</span>
+        <span class="stat-l t-fr">Ann&eacute;es Dynatrace</span>
+        <span class="stat-l t-en">Years on Dynatrace</span>
       </div>
       <div class="stat">
         <span class="stat-n" data-target="3" data-suffix="">0</span>
-        <span class="stat-l" data-fr>Certifications</span>
-        <span class="stat-l" data-en>Certifications</span>
+        <span class="stat-l t-fr">Certifications</span>
+        <span class="stat-l t-en">Certifications</span>
       </div>
       <div class="stat">
         <span class="stat-n" data-target="10" data-suffix="+">0</span>
-        <span class="stat-l" data-fr>Grands comptes</span>
-        <span class="stat-l" data-en>Enterprise clients</span>
+        <span class="stat-l t-fr">Grands comptes</span>
+        <span class="stat-l t-en">Enterprise clients</span>
       </div>
       <div class="stat">
         <span class="stat-n" data-target="3" data-suffix="">0</span>
-        <span class="stat-l" data-fr>Domaines cl&eacute;s</span>
-        <span class="stat-l" data-en>Core specialisations</span>
+        <span class="stat-l t-fr">Domaines cl&eacute;s</span>
+        <span class="stat-l t-en">Core specialisations</span>
       </div>
     </div>
   </div>
@@ -739,61 +630,39 @@
     <div class="container">
       <div class="s-head reveal">
         <div>
-          <p class="s-label" data-fr>Domaines d&rsquo;expertise</p>
-          <p class="s-label" data-en>Areas of expertise</p>
-          <h2 class="s-title" data-fr>Ce que je fais<br>vraiment bien</h2>
-          <h2 class="s-title" data-en>What I do<br>exceptionally well</h2>
+          <p class="s-label t-fr">Domaines d&rsquo;expertise</p>
+          <p class="s-label t-en">Areas of expertise</p>
+          <h2 class="s-title t-fr">Ce que je fais<br>vraiment bien</h2>
+          <h2 class="s-title t-en">What I do<br>exceptionally well</h2>
         </div>
-        <p class="s-lead" data-fr>Trois sp&eacute;cialisations profondes, construites sur 5 ans de missions en production chez des clients exigeants.</p>
-        <p class="s-lead" data-en>Three deep specialisations, forged over 5 years of production missions for demanding enterprise clients.</p>
+        <p class="s-lead t-fr">Trois sp&eacute;cialisations profondes, construites sur 5 ans de missions en production chez des clients exigeants.</p>
+        <p class="s-lead t-en">Three deep specialisations, forged over 5 years of production missions for demanding enterprise clients.</p>
       </div>
       <div class="exp-grid">
-
         <div class="exp-card reveal">
           <div class="exp-icon">&#128202;</div>
-          <div class="exp-title" data-fr>Business Analytics</div>
-          <div class="exp-title" data-en>Business Analytics</div>
-          <p class="exp-desc" data-fr>Instrumentation des flux m&eacute;tier via Dynatrace Business Events. Construction de KPIs actionnables, dashboards d&eacute;cisionnels, et alerting orient&eacute; business &mdash; pas seulement infra.</p>
-          <p class="exp-desc" data-en>Business flow instrumentation via Dynatrace Business Events. Building actionable KPIs, decision-making dashboards, and business-oriented alerting &mdash; not just infrastructure noise.</p>
-          <div class="tags">
-            <span class="tag">BizEvents</span>
-            <span class="tag">DQL</span>
-            <span class="tag">Grail</span>
-            <span class="tag">OpenTelemetry</span>
-            <span class="tag">Notebooks</span>
-          </div>
+          <div class="exp-title t-fr">Business Analytics</div>
+          <div class="exp-title t-en">Business Analytics</div>
+          <p class="exp-desc t-fr">Instrumentation des flux m&eacute;tier via Dynatrace Business Events. KPIs actionnables, dashboards d&eacute;cisionnels, alerting orient&eacute; business.</p>
+          <p class="exp-desc t-en">Business flow instrumentation via Dynatrace Business Events. Actionable KPIs, decision dashboards, business-oriented alerting.</p>
+          <div class="tags"><span class="tag">BizEvents</span><span class="tag">DQL</span><span class="tag">Grail</span><span class="tag">OpenTelemetry</span><span class="tag">Notebooks</span></div>
         </div>
-
         <div class="exp-card reveal">
           <div class="exp-icon">&#128176;</div>
-          <div class="exp-title" data-fr>FinOps &amp; Observabilit&eacute; Financi&egrave;re</div>
-          <div class="exp-title" data-en>FinOps &amp; Financial Observability</div>
-          <p class="exp-desc" data-fr>Corr&eacute;lation des co&ucirc;ts cloud avec les m&eacute;triques de performance Dynatrace. Optimisation des licences, justification du ROI, chargeback par application et Business Unit.</p>
-          <p class="exp-desc" data-en>Correlating cloud costs with Dynatrace performance metrics. License optimisation, ROI justification, chargeback by application and Business Unit.</p>
-          <div class="tags">
-            <span class="tag">Cloud Cost</span>
-            <span class="tag">Davis AI</span>
-            <span class="tag">Smartscape</span>
-            <span class="tag">AWS / Azure</span>
-            <span class="tag">Terraform</span>
-          </div>
+          <div class="exp-title t-fr">FinOps &amp; Observabilit&eacute; Financi&egrave;re</div>
+          <div class="exp-title t-en">FinOps &amp; Financial Observability</div>
+          <p class="exp-desc t-fr">Corr&eacute;lation des co&ucirc;ts cloud avec les m&eacute;triques Dynatrace. Optimisation des licences, ROI, chargeback par BU.</p>
+          <p class="exp-desc t-en">Correlating cloud costs with Dynatrace metrics. License optimisation, ROI justification, chargeback by Business Unit.</p>
+          <div class="tags"><span class="tag">Cloud Cost</span><span class="tag">Davis AI</span><span class="tag">Smartscape</span><span class="tag">AWS / Azure</span><span class="tag">Terraform</span></div>
         </div>
-
         <div class="exp-card reveal">
           <div class="exp-icon">&#128279;</div>
-          <div class="exp-title" data-fr>Int&eacute;gration ServiceNow</div>
-          <div class="exp-title" data-en>ServiceNow Integration</div>
-          <p class="exp-desc" data-fr>Orchestration bidirectionnelle Dynatrace &harr; ServiceNow&nbsp;: cr&eacute;ation automatique d&rsquo;incidents, enrichissement des CIs, workflows ITSM d&eacute;clench&eacute;s par des anomalies d&eacute;tect&eacute;es.</p>
-          <p class="exp-desc" data-en>Bidirectional Dynatrace &harr; ServiceNow orchestration: automatic incident creation, CI enrichment, ITSM workflows triggered by detected anomalies.</p>
-          <div class="tags">
-            <span class="tag">ITSM</span>
-            <span class="tag">Workflows</span>
-            <span class="tag">Problem API</span>
-            <span class="tag">CMDB</span>
-            <span class="tag">Automation</span>
-          </div>
+          <div class="exp-title t-fr">Int&eacute;gration ServiceNow</div>
+          <div class="exp-title t-en">ServiceNow Integration</div>
+          <p class="exp-desc t-fr">Orchestration Dynatrace &harr; ServiceNow&nbsp;: incidents automatiques, enrichissement CMDB, workflows ITSM sur anomalie.</p>
+          <p class="exp-desc t-en">Dynatrace &harr; ServiceNow orchestration: automatic incidents, CMDB enrichment, ITSM workflows on anomaly detection.</p>
+          <div class="tags"><span class="tag">ITSM</span><span class="tag">Workflows</span><span class="tag">Problem API</span><span class="tag">CMDB</span><span class="tag">Automation</span></div>
         </div>
-
       </div>
     </div>
   </section>
@@ -803,33 +672,30 @@
     <div class="container">
       <div class="s-head reveal">
         <div>
-          <p class="s-label" data-fr>Certifications officielles</p>
-          <p class="s-label" data-en>Official certifications</p>
-          <h2 class="s-title" data-fr>Triple certifi&eacute;<br>Dynatrace</h2>
-          <h2 class="s-title" data-en>Triple Dynatrace<br>Certified</h2>
+          <p class="s-label t-fr">Certifications officielles</p>
+          <p class="s-label t-en">Official certifications</p>
+          <h2 class="s-title t-fr">Triple certifi&eacute;<br>Dynatrace</h2>
+          <h2 class="s-title t-en">Triple Dynatrace<br>Certified</h2>
         </div>
-        <p class="s-lead" data-fr>Les trois niveaux de certification Dynatrace &mdash; de la ma&icirc;trise de la plateforme &agrave; son d&eacute;ploiement et son administration avanc&eacute;e en production.</p>
-        <p class="s-lead" data-en>All three Dynatrace certification levels &mdash; from platform mastery to production deployment and advanced administration.</p>
+        <p class="s-lead t-fr">Les trois niveaux de certification Dynatrace — de la ma&icirc;trise de la plateforme &agrave; son d&eacute;ploiement et administration avanc&eacute;e.</p>
+        <p class="s-lead t-en">All three Dynatrace certification levels — from platform mastery to production deployment and advanced administration.</p>
       </div>
       <div class="certs-grid">
         <div class="cert-card reveal">
           <div class="cert-ring">&#127891;</div>
-          <div class="cert-tier" data-fr>Niveau 1</div>
-          <div class="cert-tier" data-en>Level 1</div>
+          <div class="cert-tier t-fr">Niveau 1</div><div class="cert-tier t-en">Level 1</div>
           <div class="cert-name">Associate</div>
           <div class="cert-vendor">Dynatrace Certified</div>
         </div>
         <div class="cert-card reveal">
           <div class="cert-ring">&#127942;</div>
-          <div class="cert-tier" data-fr>Niveau 2</div>
-          <div class="cert-tier" data-en>Level 2</div>
+          <div class="cert-tier t-fr">Niveau 2</div><div class="cert-tier t-en">Level 2</div>
           <div class="cert-name">Professional Administrator</div>
           <div class="cert-vendor">Dynatrace Certified</div>
         </div>
         <div class="cert-card reveal">
           <div class="cert-ring">&#9889;</div>
-          <div class="cert-tier" data-fr>Niveau 3</div>
-          <div class="cert-tier" data-en>Level 3</div>
+          <div class="cert-tier t-fr">Niveau 3</div><div class="cert-tier t-en">Level 3</div>
           <div class="cert-name">Professional Implementer</div>
           <div class="cert-vendor">Dynatrace Certified</div>
         </div>
@@ -842,44 +708,41 @@
     <div class="container">
       <div class="s-head reveal">
         <div>
-          <p class="s-label" data-fr>Profil</p>
-          <p class="s-label" data-en>Profile</p>
-          <h2 class="s-title" data-fr>5 ans. Un seul<br>&eacute;cosyst&egrave;me.</h2>
-          <h2 class="s-title" data-en>5 years. One<br>ecosystem.</h2>
+          <p class="s-label t-fr">Profil</p><p class="s-label t-en">Profile</p>
+          <h2 class="s-title t-fr">5 ans. Un seul &eacute;cosyst&egrave;me.</h2>
+          <h2 class="s-title t-en">5 years. One ecosystem.</h2>
         </div>
-        <p class="s-lead" data-fr>Une expertise construite en profondeur, pas en largeur &mdash; avec un ancrage terrain DevOps qui change la fa&ccedil;on d&rsquo;aborder l&rsquo;observabilit&eacute;.</p>
-        <p class="s-lead" data-en>Expertise built in depth, not breadth &mdash; with a DevOps foundation that reshapes how observability is approached.</p>
+        <p class="s-lead t-fr">Une expertise construite en profondeur — avec un ancrage terrain DevOps qui change la fa&ccedil;on d&rsquo;aborder l&rsquo;observabilit&eacute;.</p>
+        <p class="s-lead t-en">Expertise built in depth, not breadth — with a DevOps foundation that reshapes how observability is approached.</p>
       </div>
       <div class="profile-grid">
         <div class="profile-body reveal">
-          <p data-fr>Consultant freelance sp&eacute;cialis&eacute; sur Dynatrace depuis <strong>5 ans</strong>, avec un background <strong>DevOps &amp; Cloud</strong> qui me permet de parler aussi bien aux &eacute;quipes d&rsquo;infrastructure qu&rsquo;aux directions m&eacute;tier.</p>
-          <p data-en>Dynatrace freelance consultant for <strong>5 years</strong>, with a <strong>DevOps &amp; Cloud</strong> background that lets me speak equally to infrastructure teams and business stakeholders.</p>
-
-          <p data-fr>Ma conviction&nbsp;: l&rsquo;observabilit&eacute; a de la valeur quand elle parle business. Pas quand elle g&eacute;n&egrave;re du bruit. Je me suis sp&eacute;cialis&eacute; dans la traduction des signaux techniques en <strong>insights d&eacute;cisionnels</strong> &mdash; KPIs, FinOps, alerting m&eacute;tier.</p>
-          <p data-en>My conviction: observability delivers value when it speaks business. Not when it generates noise. I specialise in translating technical signals into <strong>actionable business insights</strong> &mdash; KPIs, FinOps, business alerting.</p>
-
-          <p data-fr>J&rsquo;interviens en mode conseil, mise en &oelig;uvre ou accompagnement sur la dur&eacute;e. <strong>Dynatrace SaaS, Managed, et tout l&rsquo;&eacute;cosyst&egrave;me cloud AWS / Azure / GCP.</strong></p>
-          <p data-en>I work in advisory, implementation, or long-term support modes. <strong>Dynatrace SaaS, Managed, and the full AWS / Azure / GCP cloud ecosystem.</strong></p>
+          <p class="t-fr">Consultant freelance sp&eacute;cialis&eacute; sur Dynatrace depuis <strong>5 ans</strong>, avec un background <strong>DevOps &amp; Cloud</strong> qui me permet de parler aussi bien aux &eacute;quipes d&rsquo;infrastructure qu&rsquo;aux directions m&eacute;tier.</p>
+          <p class="t-en">Dynatrace freelance consultant for <strong>5 years</strong>, with a <strong>DevOps &amp; Cloud</strong> background that lets me speak equally to infrastructure teams and business stakeholders.</p>
+          <p class="t-fr">Ma conviction&nbsp;: l&rsquo;observabilit&eacute; a de la valeur quand elle parle business. Je traduis les signaux techniques en <strong>insights d&eacute;cisionnels</strong> &mdash; KPIs, FinOps, alerting m&eacute;tier.</p>
+          <p class="t-en">My conviction: observability delivers value when it speaks business. I translate technical signals into <strong>actionable business insights</strong> — KPIs, FinOps, business alerting.</p>
+          <p class="t-fr">Dynatrace SaaS, Managed, et tout l&rsquo;&eacute;cosyst&egrave;me cloud <strong>AWS / Azure / GCP</strong>.</p>
+          <p class="t-en">Dynatrace SaaS, Managed, and the full <strong>AWS / Azure / GCP</strong> cloud ecosystem.</p>
         </div>
         <div class="timeline reveal">
           <div class="tl-item">
             <div class="tl-dot"></div>
             <div>
-              <div class="tl-year">2024 &mdash; <span data-fr>Pr&eacute;sent</span><span data-en>Present</span></div>
-              <div class="tl-role" data-fr>Consultant Dynatrace Senior &mdash; Freelance</div>
-              <div class="tl-role" data-en>Senior Dynatrace Consultant &mdash; Freelance</div>
-              <div class="tl-desc" data-fr>Missions grands comptes. Business Analytics, FinOps, int&eacute;gration ServiceNow. Clients dans les secteurs finance, conseil et industrie.</div>
-              <div class="tl-desc" data-en>Enterprise engagements. Business Analytics, FinOps, ServiceNow integration. Clients in finance, consulting and manufacturing.</div>
+              <div class="tl-year">2024 &mdash; <span class="t-fr">Pr&eacute;sent</span><span class="t-en">Present</span></div>
+              <div class="tl-role t-fr">Consultant Dynatrace Senior &mdash; Freelance</div>
+              <div class="tl-role t-en">Senior Dynatrace Consultant &mdash; Freelance</div>
+              <div class="tl-desc t-fr">Missions grands comptes. Business Analytics, FinOps, int&eacute;gration ServiceNow.</div>
+              <div class="tl-desc t-en">Enterprise engagements. Business Analytics, FinOps, ServiceNow integration.</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-dot"></div>
             <div>
               <div class="tl-year">2022 &mdash; 2024</div>
-              <div class="tl-role" data-fr>Expert Observabilit&eacute; &mdash; ESN Tier 1</div>
-              <div class="tl-role" data-en>Observability Expert &mdash; Tier 1 consulting firm</div>
-              <div class="tl-desc" data-fr>D&eacute;ploiements Dynatrace &agrave; grande &eacute;chelle. Delivery chez Deloitte et autres grands comptes. Obtention des certifications Professional.</div>
-              <div class="tl-desc" data-en>Large-scale Dynatrace deployments. Delivery at Deloitte and other major accounts. Obtained both Professional certifications.</div>
+              <div class="tl-role t-fr">Expert Observabilit&eacute; &mdash; ESN Tier 1</div>
+              <div class="tl-role t-en">Observability Expert &mdash; Tier 1 consulting firm</div>
+              <div class="tl-desc t-fr">D&eacute;ploiements Dynatrace &agrave; grande &eacute;chelle. Delivery chez Deloitte. Certifications Professional.</div>
+              <div class="tl-desc t-en">Large-scale Dynatrace deployments. Delivery at Deloitte. Professional certifications.</div>
             </div>
           </div>
           <div class="tl-item">
@@ -887,22 +750,176 @@
             <div>
               <div class="tl-year">2020 &mdash; 2022</div>
               <div class="tl-role">DevOps Engineer</div>
-              <div class="tl-desc" data-fr>Infrastructure cloud, CI/CD, monitoring. Transition progressive vers la sp&eacute;cialisation observabilit&eacute; Dynatrace.</div>
-              <div class="tl-desc" data-en>Cloud infrastructure, CI/CD, monitoring. Gradual transition toward Dynatrace observability specialisation.</div>
+              <div class="tl-desc t-fr">Infrastructure cloud, CI/CD, monitoring. Transition vers la sp&eacute;cialisation Dynatrace.</div>
+              <div class="tl-desc t-en">Cloud infrastructure, CI/CD, monitoring. Transition toward Dynatrace specialisation.</div>
             </div>
           </div>
           <div class="tl-item">
             <div class="tl-dot"></div>
             <div>
               <div class="tl-year">2019</div>
-              <div class="tl-role" data-fr>Certification Dynatrace Associate</div>
-              <div class="tl-role" data-en>Dynatrace Associate Certification</div>
-              <div class="tl-desc" data-fr>Point de d&eacute;part d&rsquo;une sp&eacute;cialisation qui dure.</div>
-              <div class="tl-desc" data-en>The starting point of a lasting specialisation.</div>
+              <div class="tl-role t-fr">Certification Dynatrace Associate</div>
+              <div class="tl-role t-en">Dynatrace Associate Certification</div>
+              <div class="tl-desc t-fr">D&eacute;but d&rsquo;une sp&eacute;cialisation qui dure.</div>
+              <div class="tl-desc t-en">The start of a lasting specialisation.</div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SHOWCASE
+  ════════════════════════════════════════ -->
+  <section id="showcase">
+    <div class="container">
+      <div class="s-head reveal">
+        <div>
+          <p class="s-label t-fr">Cas d&rsquo;usage live</p>
+          <p class="s-label t-en">Live use cases</p>
+          <h2 class="s-title t-fr">En pratique,<br>voil&agrave; ce que &ccedil;a donne</h2>
+          <h2 class="s-title t-en">In practice,<br>here&rsquo;s what it looks like</h2>
+        </div>
+        <p class="s-lead t-fr">Trois repr&eacute;sentations interactives des domaines cl&eacute;s &mdash; Business Flow, int&eacute;gration ITSM, et corr&eacute;lation FinOps.</p>
+        <p class="s-lead t-en">Three live representations of my core domains &mdash; Business Flow, ITSM integration, and FinOps correlation.</p>
+      </div>
+
+      <div class="showcase-stack">
+
+        <!-- Card 1: Business Flow 3D -->
+        <div class="sc-card reveal">
+          <div class="sc-card-header">
+            <div>
+              <div class="sc-chip t-fr">Business Analytics &mdash; Customer Journey</div>
+              <div class="sc-chip t-en">Business Analytics &mdash; Customer Journey</div>
+              <div class="sc-title t-fr">Funnel de conversion instrumenté avec Dynatrace BizEvents</div>
+              <div class="sc-title t-en">Conversion funnel instrumented with Dynatrace BizEvents</div>
+            </div>
+            <div class="sc-live t-fr">Simulation live</div>
+            <div class="sc-live t-en">Live simulation</div>
+          </div>
+
+          <div class="funnel-outer">
+            <div class="funnel-wrap" id="funnel-wrap">
+              <!-- stages injected by JS -->
+            </div>
+          </div>
+
+          <div class="funnel-legend">
+            <div class="f-leg-item">
+              <span class="f-leg-n" id="leg-cr">23.1%</span>
+              <span class="f-leg-l t-fr">Taux conversion</span>
+              <span class="f-leg-l t-en">Conversion rate</span>
+            </div>
+            <div class="f-leg-item">
+              <span class="f-leg-n" id="leg-eps">847</span>
+              <span class="f-leg-l t-fr">Events / sec</span>
+              <span class="f-leg-l t-en">Events / sec</span>
+            </div>
+            <div class="f-leg-item">
+              <span class="f-leg-n" id="leg-p95">142ms</span>
+              <span class="f-leg-l">p95 latency</span>
+            </div>
+            <div class="f-leg-item">
+              <span class="f-leg-n" id="leg-rev">&euro;2.4M</span>
+              <span class="f-leg-l t-fr">Impact rev. / jour</span>
+              <span class="f-leg-l t-en">Revenue impact / day</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom row -->
+        <div class="sc-bottom-row">
+
+          <!-- Card 2: ServiceNow -->
+          <div class="sc-card reveal">
+            <div class="sc-card-header">
+              <div>
+                <div class="sc-chip">ServiceNow &times; Dynatrace &times; CMDB</div>
+                <div class="sc-title t-fr">Orchestration ITSM automatique</div>
+                <div class="sc-title t-en">Automatic ITSM orchestration</div>
+              </div>
+              <div class="sc-live t-fr">Animation</div>
+              <div class="sc-live t-en">Animation</div>
+            </div>
+            <div class="snow-diagram">
+              <svg class="snow-svg" id="snow-svg" viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Paths -->
+                <path id="p-dt-prob" class="snow-path dt-prob" d="M 95 55 L 190 55"/>
+                <path id="p-prob-sn" class="snow-path prob-sn" d="M 285 55 L 285 130"/>
+                <path id="p-sn-cmdb" class="snow-path sn-cmdb" d="M 285 160 Q 285 190 190 190 Q 95 190 95 160"/>
+                <path id="p-cmdb-dt" class="snow-path cmdb-dt" d="M 95 130 L 95 85"/>
+
+                <!-- Packets (animated by JS) -->
+                <circle id="pkt1" class="pkt pkt-orange" cx="-100" cy="-100" r="3.5"/>
+                <circle id="pkt2" class="pkt pkt-purple" cx="-100" cy="-100" r="3.5"/>
+                <circle id="pkt3" class="pkt pkt-cyan"   cx="-100" cy="-100" r="3.5"/>
+                <circle id="pkt4" class="pkt pkt-blue"   cx="-100" cy="-100" r="3.5"/>
+
+                <!-- Nodes -->
+                <g class="snow-node dt">
+                  <rect x="10" y="30" width="170" height="50" rx="6"/>
+                  <text x="95" y="52" text-anchor="middle">&#9679; Dynatrace</text>
+                  <text x="95" y="68" text-anchor="middle" class="sub" id="dt-status">Monitoring active</text>
+                </g>
+                <g class="snow-node prob">
+                  <rect x="200" y="30" width="170" height="50" rx="6"/>
+                  <text x="285" y="52" text-anchor="middle">&#9888; Problem Detected</text>
+                  <text x="285" y="68" text-anchor="middle" class="sub" id="prob-status">Anomaly &bull; p1</text>
+                </g>
+                <g class="snow-node sn">
+                  <rect x="200" y="105" width="170" height="50" rx="6"/>
+                  <text x="285" y="127" text-anchor="middle">&#128203; ServiceNow</text>
+                  <text x="285" y="143" text-anchor="middle" class="sub" id="sn-status">INC0012847 created</text>
+                </g>
+                <g class="snow-node cmdb">
+                  <rect x="10" y="105" width="170" height="50" rx="6"/>
+                  <text x="95" y="127" text-anchor="middle">&#128221; CMDB</text>
+                  <text x="95" y="143" text-anchor="middle" class="sub" id="cmdb-status">CI enriched &bull; linked</text>
+                </g>
+              </svg>
+            </div>
+            <div class="snow-status" id="snow-log">
+              <div class="snow-evt" id="evt1"><div class="snow-evt-dot" style="background:var(--orange)"></div><span class="t-fr"><strong>Anomalie d&eacute;tect&eacute;e</strong> &mdash; p99 latency &gt; 800ms sur payment-service</span><span class="t-en"><strong>Anomaly detected</strong> &mdash; p99 latency &gt; 800ms on payment-service</span></div>
+              <div class="snow-evt" id="evt2"><div class="snow-evt-dot" style="background:#8B5CF6"></div><span class="t-fr"><strong>Probl&egrave;me ouvert</strong> &mdash; Davis AI root cause identifi&eacute;</span><span class="t-en"><strong>Problem opened</strong> &mdash; Davis AI root cause identified</span></div>
+              <div class="snow-evt" id="evt3"><div class="snow-evt-dot" style="background:var(--accent)"></div><span class="t-fr"><strong>INC0012847 cr&eacute;&eacute;</strong> &mdash; assign&eacute; &agrave; l&rsquo;&eacute;quipe Platform Ops</span><span class="t-en"><strong>INC0012847 created</strong> &mdash; assigned to Platform Ops team</span></div>
+              <div class="snow-evt" id="evt4"><div class="snow-evt-dot" style="background:var(--primary)"></div><span class="t-fr"><strong>CMDB enrichi</strong> &mdash; CI payment-svc li&eacute; &agrave; INC &amp; probl&egrave;me DT</span><span class="t-en"><strong>CMDB enriched</strong> &mdash; CI payment-svc linked to INC &amp; DT problem</span></div>
+            </div>
+          </div>
+
+          <!-- Card 3: FinOps -->
+          <div class="sc-card reveal">
+            <div class="sc-card-header">
+              <div>
+                <div class="sc-chip">FinOps &mdash; Cloud Cost Intelligence</div>
+                <div class="sc-title t-fr">Corr&eacute;lation co&ucirc;t cloud &times; performance</div>
+                <div class="sc-title t-en">Cloud cost &times; performance correlation</div>
+              </div>
+              <div class="sc-live t-fr">30 derniers jours</div>
+              <div class="sc-live t-en">Last 30 days</div>
+            </div>
+            <canvas id="finops-canvas" height="180"></canvas>
+            <div class="finops-kpis">
+              <div class="fkpi">
+                <span class="fkpi-n orange" id="fk-waste">-38%</span>
+                <span class="fkpi-l t-fr">Gaspillage cloud</span>
+                <span class="fkpi-l t-en">Cloud waste</span>
+              </div>
+              <div class="fkpi">
+                <span class="fkpi-n green" id="fk-sla">99.94%</span>
+                <span class="fkpi-l">SLA</span>
+              </div>
+              <div class="fkpi">
+                <span class="fkpi-n blue" id="fk-saving">&euro;118k</span>
+                <span class="fkpi-l t-fr">Economies / an</span>
+                <span class="fkpi-l t-en">Savings / year</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.sc-bottom-row -->
+      </div><!-- /.showcase-stack -->
     </div>
   </section>
 
@@ -911,62 +928,59 @@
     <div class="container">
       <div class="s-head reveal">
         <div>
-          <p class="s-label" data-fr>R&eacute;f&eacute;rences clients</p>
-          <p class="s-label" data-en>Client references</p>
-          <h2 class="s-title" data-fr>Des missions qui<br>comptent</h2>
-          <h2 class="s-title" data-en>Missions that<br>matter</h2>
+          <p class="s-label t-fr">R&eacute;f&eacute;rences clients</p>
+          <p class="s-label t-en">Client references</p>
+          <h2 class="s-title t-fr">Des missions qui comptent</h2>
+          <h2 class="s-title t-en">Missions that matter</h2>
         </div>
-        <p class="s-lead" data-fr>Interventions chez des organisations o&ugrave; la fiabilit&eacute; et la performance ont un impact direct sur le chiffre d&rsquo;affaires.</p>
-        <p class="s-lead" data-en>Engagements with organisations where reliability and performance have a direct impact on revenue.</p>
+        <p class="s-lead t-fr">Interventions l&agrave; o&ugrave; la fiabilit&eacute; a un impact direct sur le chiffre d&rsquo;affaires.</p>
+        <p class="s-lead t-en">Engagements where reliability has a direct impact on revenue.</p>
       </div>
       <div class="clients-grid">
         <div class="client-table reveal">
           <div class="client-row">
+            <div><div class="client-name">Deloitte</div><div class="client-sector">Consulting &amp; Audit</div></div>
+            <div class="client-pip"></div>
+          </div>
+          <div class="client-row">
             <div>
-              <div class="client-name">Deloitte</div>
-              <div class="client-sector">Consulting &amp; Audit</div>
+              <div class="client-name t-fr">Confidentiel &mdash; Grand compte bancaire</div>
+              <div class="client-name t-en">Confidential &mdash; Major banking group</div>
+              <div class="client-sector t-fr">Banque &amp; Finance</div>
+              <div class="client-sector t-en">Banking &amp; Finance</div>
             </div>
             <div class="client-pip"></div>
           </div>
           <div class="client-row">
             <div>
-              <div class="client-name" data-fr>Confidentiel &mdash; Grand compte bancaire</div>
-              <div class="client-name" data-en>Confidential &mdash; Major banking group</div>
-              <div class="client-sector" data-fr>Banque &amp; Finance</div>
-              <div class="client-sector" data-en>Banking &amp; Finance</div>
+              <div class="client-name t-fr">Confidentiel &mdash; Groupe assurance</div>
+              <div class="client-name t-en">Confidential &mdash; Insurance group</div>
+              <div class="client-sector t-fr">Assurance</div>
+              <div class="client-sector t-en">Insurance</div>
             </div>
             <div class="client-pip"></div>
           </div>
           <div class="client-row">
             <div>
-              <div class="client-name" data-fr>Confidentiel &mdash; Groupe assurance</div>
-              <div class="client-name" data-en>Confidential &mdash; Insurance group</div>
-              <div class="client-sector" data-fr>Assurance</div>
-              <div class="client-sector" data-en>Insurance</div>
-            </div>
-            <div class="client-pip"></div>
-          </div>
-          <div class="client-row">
-            <div>
-              <div class="client-name" data-fr>Confidentiel &mdash; Acteur industrie</div>
-              <div class="client-name" data-en>Confidential &mdash; Manufacturing group</div>
-              <div class="client-sector" data-fr>Industrie</div>
-              <div class="client-sector" data-en>Manufacturing</div>
+              <div class="client-name t-fr">Confidentiel &mdash; Acteur industrie</div>
+              <div class="client-name t-en">Confidential &mdash; Manufacturing group</div>
+              <div class="client-sector t-fr">Industrie</div>
+              <div class="client-sector t-en">Manufacturing</div>
             </div>
             <div class="client-pip"></div>
           </div>
         </div>
         <div class="reveal">
           <p class="clients-note">
-            <strong data-fr>Confidentialit&eacute; &amp; discr&eacute;tion</strong>
-            <strong data-en>Confidentiality &amp; discretion</strong>
-            <span data-fr>La majorit&eacute; de mes missions s&rsquo;inscrivent dans des contextes sensibles &mdash; infrastructures critiques, donn&eacute;es financi&egrave;res, environnements r&eacute;glement&eacute;s. Je ne cite que les clients ayant donn&eacute; leur accord explicite. Des r&eacute;f&eacute;rences d&eacute;taill&eacute;es sont disponibles sur demande.</span>
-            <span data-en>Most of my engagements involve sensitive contexts &mdash; critical infrastructure, financial data, regulated environments. I only name clients who have given explicit consent. Detailed references available on request.</span>
+            <strong class="t-fr">Confidentialit&eacute; &amp; discr&eacute;tion</strong>
+            <strong class="t-en">Confidentiality &amp; discretion</strong>
+            <span class="t-fr">La majorit&eacute; de mes missions s&rsquo;inscrivent dans des contextes sensibles &mdash; infrastructures critiques, donn&eacute;es financi&egrave;res, environnements r&eacute;glement&eacute;s. R&eacute;f&eacute;rences d&eacute;taill&eacute;es disponibles sur demande.</span>
+            <span class="t-en">Most of my engagements involve sensitive contexts &mdash; critical infrastructure, financial data, regulated environments. Detailed references available on request.</span>
           </p>
           <br>
           <p class="clients-note">
-            <span data-fr>J&rsquo;interviens aussi bien en direct avec les &eacute;quipes DSI qu&rsquo;en sous-traitance d&rsquo;ESN et cabinets de conseil.</span>
-            <span data-en>I work directly with IT teams or as a subcontractor for consulting firms and systems integrators.</span>
+            <span class="t-fr">J&rsquo;interviens en direct avec les &eacute;quipes DSI ou en sous-traitance d&rsquo;ESN et cabinets de conseil.</span>
+            <span class="t-en">I work directly with IT teams or as a subcontractor for consulting firms and systems integrators.</span>
           </p>
         </div>
       </div>
@@ -976,17 +990,40 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <div class="contact-box reveal">
+      <div class="s-head reveal">
         <div>
-          <h2 class="contact-headline" data-fr>Un projet Dynatrace&nbsp;?<br><span class="accent">Parlons-en.</span></h2>
-          <h2 class="contact-headline" data-en>A Dynatrace project?<br><span class="accent">Let&rsquo;s talk.</span></h2>
-          <p class="contact-sub" data-fr>Disponible pour des missions de conseil, mise en &oelig;uvre et accompagnement. R&eacute;ponse sous 24h.</p>
-          <p class="contact-sub" data-en>Available for advisory, implementation and long-term support missions. Response within 24h.</p>
+          <p class="s-label t-fr">Contact</p>
+          <p class="s-label t-en">Contact</p>
+          <h2 class="s-title t-fr">Un projet Dynatrace&nbsp;?</h2>
+          <h2 class="s-title t-en">A Dynatrace project?</h2>
         </div>
-        <div class="contact-btns">
-          <a href="mailto:nizardlior23@gmail.com" class="btn-primary" data-fr>Envoyer un email &rarr;</a>
-          <a href="mailto:nizardlior23@gmail.com" class="btn-primary" data-en>Send an email &rarr;</a>
-          <a href="https://www.linkedin.com/in/lior-nizard-892660219" target="_blank" rel="noopener" class="btn-ghost">LinkedIn</a>
+        <p class="s-lead t-fr">Disponible pour des missions de conseil, mise en &oelig;uvre et accompagnement long terme.</p>
+        <p class="s-lead t-en">Available for advisory, implementation and long-term support engagements.</p>
+      </div>
+      <div class="contact-box reveal">
+        <div class="contact-left">
+          <h2 class="contact-headline t-fr">Parlons de vos<br><span class="accent">enjeux observabilit&eacute;</span></h2>
+          <h2 class="contact-headline t-en">Let&rsquo;s discuss your<br><span class="accent">observability goals</span></h2>
+          <p class="contact-sub t-fr">Expert Dynatrace triple certifi&eacute;, sp&eacute;cialis&eacute; Business Analytics, FinOps et int&eacute;gration ServiceNow. Disponible pour toute mission grands comptes.</p>
+          <p class="contact-sub t-en">Triple-certified Dynatrace expert, specialised in Business Analytics, FinOps and ServiceNow integration. Available for enterprise engagements.</p>
+          <div class="contact-meta">
+            <div class="contact-meta-row"><div class="dot"></div><span class="t-fr"><strong>Disponible</strong> &mdash; nouvelles missions &agrave; partir de maintenant</span><span class="t-en"><strong>Available</strong> &mdash; new engagements from now</span></div>
+            <div class="contact-meta-row"><div class="dot blue"></div><span class="t-fr"><strong>R&eacute;ponse &lt; 24h</strong> &mdash; nizardlior23@gmail.com</span><span class="t-en"><strong>Reply &lt; 24h</strong> &mdash; nizardlior23@gmail.com</span></div>
+            <div class="contact-meta-row"><div class="dot blue"></div><span><strong>LinkedIn</strong> &mdash; lior-nizard-892660219</span></div>
+          </div>
+        </div>
+        <div class="contact-right">
+          <div class="contact-stats">
+            <div class="cstat"><span class="cstat-n">5+</span><span class="cstat-l t-fr">Ann&eacute;es</span><span class="cstat-l t-en">Years</span></div>
+            <div class="cstat"><span class="cstat-n">3</span><span class="cstat-l">Certifs</span></div>
+            <div class="cstat"><span class="cstat-n">10+</span><span class="cstat-l">Clients</span></div>
+            <div class="cstat"><span class="cstat-n">&lt;24h</span><span class="cstat-l t-fr">R&eacute;ponse</span><span class="cstat-l t-en">Reply</span></div>
+          </div>
+          <a href="mailto:nizardlior23@gmail.com" class="btn-primary" style="justify-content:center">
+            <span class="t-fr">Envoyer un email &rarr;</span>
+            <span class="t-en">Send an email &rarr;</span>
+          </a>
+          <a href="https://www.linkedin.com/in/lior-nizard-892660219" target="_blank" rel="noopener" class="btn-ghost" style="justify-content:center">LinkedIn</a>
         </div>
       </div>
     </div>
@@ -996,15 +1033,15 @@
 
 <footer>
   <div class="footer-inner">
-    <p data-fr>&copy; 2026 Lior Nizard &mdash; Consultant Dynatrace Freelance</p>
-    <p data-en>&copy; 2026 Lior Nizard &mdash; Dynatrace Freelance Consultant</p>
-    <p data-fr>Triple certifi&eacute; &middot; Business Analytics &middot; FinOps &middot; ServiceNow</p>
-    <p data-en>Triple certified &middot; Business Analytics &middot; FinOps &middot; ServiceNow</p>
+    <p class="t-fr">&copy; 2026 Lior Nizard &mdash; Consultant Dynatrace Freelance</p>
+    <p class="t-en">&copy; 2026 Lior Nizard &mdash; Dynatrace Freelance Consultant</p>
+    <p class="t-fr">Triple certifi&eacute; &middot; Business Analytics &middot; FinOps &middot; ServiceNow</p>
+    <p class="t-en">Triple certified &middot; Business Analytics &middot; FinOps &middot; ServiceNow</p>
   </div>
 </footer>
 
 <script>
-// ── LANG SWITCHER ──
+/* ── LANG ── */
 function setLang(l) {
   document.body.className = 'lang-' + l;
   document.querySelectorAll('.lang-btn').forEach(function(b) {
@@ -1012,152 +1049,386 @@ function setLang(l) {
   });
   try { localStorage.setItem('lang', l); } catch(e) {}
 }
-(function () {
-  try {
-    var saved = localStorage.getItem('lang');
-    if (saved === 'en') setLang('en');
-  } catch(e) {}
+(function() {
+  try { var s = localStorage.getItem('lang'); if (s === 'en') setLang('en'); } catch(e) {}
 })();
 
-// ── TOPOLOGY CANVAS ──
-(function () {
+/* ── TOPOLOGY CANVAS (hero) ── */
+(function() {
   var canvas = document.getElementById('topo');
   var ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
+  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
   resize();
   window.addEventListener('resize', resize);
-
-  var COLORS = ['#1496FF', '#00D4F5', '#7B61FF'];
+  var COLS = ['#1496FF','#00D4F5','#7B61FF'];
   var nodes = [];
   for (var i = 0; i < 22; i++) {
-    nodes.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: (Math.random() - 0.5) * 0.22,
-      r: Math.random() * 2.5 + 1.5,
-      color: COLORS[Math.floor(Math.random() * COLORS.length)],
-    });
+    nodes.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+      vx: (Math.random()-.5)*.22, vy: (Math.random()-.5)*.22,
+      r: Math.random()*2.5+1.5, color: COLS[Math.floor(Math.random()*3)] });
   }
-
-  var packets = [];
-  var frame = 0;
-
-  function spawnPackets() {
-    if (packets.length >= 18) return;
-    for (var i = 0; i < nodes.length && packets.length < 18; i++) {
-      for (var j = i + 1; j < nodes.length; j++) {
-        var dx = nodes[i].x - nodes[j].x;
-        var dy = nodes[i].y - nodes[j].y;
-        if (Math.sqrt(dx*dx + dy*dy) < 190 && Math.random() < 0.04) {
-          var dir = Math.random() < 0.5;
-          packets.push({
-            from: dir ? nodes[i] : nodes[j],
-            to:   dir ? nodes[j] : nodes[i],
-            t: 0,
-            speed: 0.006 + Math.random() * 0.005,
-          });
+  var pkts = [], frame = 0;
+  function spawnPkts() {
+    if (pkts.length >= 18) return;
+    for (var i = 0; i < nodes.length && pkts.length < 18; i++) {
+      for (var j = i+1; j < nodes.length; j++) {
+        var dx = nodes[i].x-nodes[j].x, dy = nodes[i].y-nodes[j].y;
+        if (Math.sqrt(dx*dx+dy*dy) < 190 && Math.random() < 0.04) {
+          var d = Math.random() < .5;
+          pkts.push({ from: d?nodes[i]:nodes[j], to: d?nodes[j]:nodes[i], t:0, speed:.006+Math.random()*.005 });
         }
       }
     }
   }
-
   function tick() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    frame++;
-
+    ctx.clearRect(0,0,canvas.width,canvas.height); frame++;
     nodes.forEach(function(n) {
-      n.x += n.vx; n.y += n.vy;
-      if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
-      if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+      n.x+=n.vx; n.y+=n.vy;
+      if(n.x<0||n.x>canvas.width) n.vx*=-1;
+      if(n.y<0||n.y>canvas.height) n.vy*=-1;
     });
-
-    for (var i = 0; i < nodes.length; i++) {
-      for (var j = i + 1; j < nodes.length; j++) {
-        var dx = nodes[i].x - nodes[j].x;
-        var dy = nodes[i].y - nodes[j].y;
-        var d  = Math.sqrt(dx*dx + dy*dy);
-        if (d < 190) {
-          ctx.strokeStyle = 'rgba(20,150,255,' + ((1 - d / 190) * 0.22) + ')';
-          ctx.lineWidth = 0.8;
-          ctx.beginPath();
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.stroke();
-        }
-      }
+    for (var i=0;i<nodes.length;i++) for (var j=i+1;j<nodes.length;j++) {
+      var dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if (d<190) { ctx.strokeStyle='rgba(20,150,255,'+((1-d/190)*.22)+')'; ctx.lineWidth=.8; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); }
     }
-
-    if (frame % 50 === 0) spawnPackets();
-
-    for (var k = packets.length - 1; k >= 0; k--) {
-      var p = packets[k];
-      p.t += p.speed;
-      if (p.t >= 1) { packets.splice(k, 1); continue; }
-      var px = p.from.x + (p.to.x - p.from.x) * p.t;
-      var py = p.from.y + (p.to.y - p.from.y) * p.t;
-      ctx.fillStyle = '#00D4F5';
-      ctx.beginPath();
-      ctx.arc(px, py, 2, 0, Math.PI * 2);
-      ctx.fill();
+    if (frame%50===0) spawnPkts();
+    for (var k=pkts.length-1;k>=0;k--) {
+      var p=pkts[k]; p.t+=p.speed;
+      if (p.t>=1){pkts.splice(k,1);continue;}
+      var px=p.from.x+(p.to.x-p.from.x)*p.t, py=p.from.y+(p.to.y-p.from.y)*p.t;
+      ctx.fillStyle='#00D4F5'; ctx.beginPath(); ctx.arc(px,py,2,0,Math.PI*2); ctx.fill();
     }
-
     nodes.forEach(function(n) {
-      var g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 5);
-      g.addColorStop(0, n.color + '55');
-      g.addColorStop(1, n.color + '00');
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r * 5, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = n.color;
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fill();
+      var g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*5);
+      g.addColorStop(0,n.color+'55'); g.addColorStop(1,n.color+'00');
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(n.x,n.y,n.r*5,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle=n.color; ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fill();
     });
-
     requestAnimationFrame(tick);
   }
-
   tick();
 })();
 
-// ── SCROLL REVEAL ──
-(function () {
+/* ── SCROLL REVEAL ── */
+(function() {
   var io = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        setTimeout(function() { e.target.classList.add('in'); }, 80);
-        io.unobserve(e.target);
-      }
+      if (e.isIntersecting) { setTimeout(function(){e.target.classList.add('in');},80); io.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
 })();
 
-// ── COUNTERS ──
-(function () {
+/* ── COUNTERS ── */
+(function() {
   var io = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (!e.isIntersecting) return;
-      var el = e.target;
-      var target = parseInt(el.dataset.target, 10);
-      var suf = el.dataset.suffix || '';
-      var cur = 0;
-      var step = Math.max(1, Math.floor(target / 20));
-      var iv = setInterval(function() {
-        cur = Math.min(cur + step, target);
-        el.textContent = cur + suf;
-        if (cur >= target) clearInterval(iv);
-      }, 55);
+      var el=e.target, target=parseInt(el.dataset.target,10), suf=el.dataset.suffix||'', cur=0;
+      var step=Math.max(1,Math.floor(target/20));
+      var iv=setInterval(function(){ cur=Math.min(cur+step,target); el.textContent=cur+suf; if(cur>=target)clearInterval(iv); },55);
       io.unobserve(el);
     });
   }, { threshold: 0.5 });
-  document.querySelectorAll('.stat-n[data-target]').forEach(function(el) { io.observe(el); });
+  document.querySelectorAll('.stat-n[data-target]').forEach(function(el){ io.observe(el); });
+})();
+
+/* ════════════════════════════════════════
+   FUNNEL 3D
+════════════════════════════════════════ */
+(function() {
+  var stages = [
+    { name: 'Session Started', count: 12847, color: '#1496FF', pct: 1.00 },
+    { name: 'Search',          count:  9203, color: '#0DB8E8', pct: 0.716, drop: '-28.4%' },
+    { name: 'Journey Viewed',  count:  6841, color: '#00C4B4', pct: 0.532, drop: '-25.7%' },
+    { name: 'Booking Started', count:  4120, color: '#00D4A0', pct: 0.321, drop: '-39.8%' },
+    { name: 'Payment Confirmed',count: 2973, color: '#00C48C', pct: 0.231, drop: '-27.8%' },
+  ];
+  var wrap = document.getElementById('funnel-wrap');
+  if (!wrap) return;
+
+  stages.forEach(function(s, idx) {
+    var minW = 38, maxW = 100;
+    var barW = minW + (maxW - minW) * s.pct;
+
+    var stageDiv = document.createElement('div');
+    stageDiv.className = 'f-stage';
+    stageDiv.style.cssText = 'position:relative;width:100%;height:46px;display:flex;justify-content:center;align-items:stretch;';
+
+    var barWrap = document.createElement('div');
+    barWrap.className = 'f-bar-wrap';
+    barWrap.style.cssText = 'width:'+barW+'%;border-radius:4px;overflow:hidden;position:relative;cursor:default;';
+
+    var fill = document.createElement('div');
+    fill.style.cssText = 'position:absolute;inset:0;background:'+s.color+';opacity:0.18;border-radius:4px;';
+
+    var border = document.createElement('div');
+    border.style.cssText = 'position:absolute;inset:0;border:1px solid '+s.color+';border-radius:4px;opacity:0.45;';
+
+    var info = document.createElement('div');
+    info.style.cssText = 'position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;width:100%;padding:0 0.85rem;gap:0.5rem;';
+
+    var name = document.createElement('span');
+    name.style.cssText = 'font-size:0.75rem;font-weight:700;color:#E2EAF8;white-space:nowrap;';
+    name.textContent = s.name;
+
+    var right = document.createElement('span');
+    right.style.cssText = 'display:flex;align-items:center;gap:0.75rem;flex-shrink:0;';
+
+    var cnt = document.createElement('span');
+    cnt.style.cssText = 'font-size:0.75rem;font-weight:700;color:#E2EAF8;font-variant-numeric:tabular-nums;';
+    cnt.textContent = s.count.toLocaleString();
+
+    right.appendChild(cnt);
+    if (s.drop) {
+      var drop = document.createElement('span');
+      drop.style.cssText = 'font-size:0.65rem;font-weight:600;color:#FF8C42;';
+      drop.textContent = s.drop;
+      right.appendChild(drop);
+    }
+
+    info.appendChild(name);
+    info.appendChild(right);
+    barWrap.appendChild(fill);
+    barWrap.appendChild(border);
+    barWrap.appendChild(info);
+    stageDiv.appendChild(barWrap);
+    wrap.appendChild(stageDiv);
+
+    /* connector */
+    if (idx < stages.length - 1) {
+      var conn = document.createElement('div');
+      var nextW = minW + (maxW - minW) * stages[idx+1].pct;
+      conn.style.cssText = 'width:'+barW+'%;height:4px;display:flex;align-items:center;justify-content:center;position:relative;';
+      var line = document.createElement('div');
+      line.style.cssText = 'position:absolute;left:'+((barW-nextW)/2/barW*100)+'%;right:'+((barW-nextW)/2/barW*100)+'%;height:100%;background:rgba(20,150,255,0.12);';
+      conn.appendChild(line);
+      wrap.appendChild(conn);
+    }
+  });
+
+  /* Animate counts fluctuation */
+  setInterval(function() {
+    var delta = Math.floor(Math.random()*30)-10;
+    var eps = document.getElementById('leg-eps');
+    if (eps) { var v = parseInt(eps.textContent)||847; eps.textContent = Math.max(700,Math.min(999,v+delta)); }
+    var p95 = document.getElementById('leg-p95');
+    if (p95) { var ms = parseInt(p95.textContent)||142; p95.textContent = Math.max(110,Math.min(200,ms+(Math.floor(Math.random()*10)-4)))+'ms'; }
+  }, 2000);
+})();
+
+/* ════════════════════════════════════════
+   SERVICENOW ANIMATION
+════════════════════════════════════════ */
+(function() {
+  var svg = document.getElementById('snow-svg');
+  if (!svg) return;
+
+  /* Animate packets along paths */
+  var paths = [
+    { pkt: 'pkt1', path: [{x:95,y:55},{x:190,y:55}], dur: 1800, loop: true },
+    { pkt: 'pkt2', path: [{x:285,y:55},{x:285,y:130}], dur: 1600, delay: 600, loop: true },
+    { pkt: 'pkt3', path: [{x:285,y:160},{x:190,y:190},{x:95,y:160}], dur: 2000, delay: 1200, loop: true },
+    { pkt: 'pkt4', path: [{x:95,y:130},{x:95,y:85}], dur: 1400, delay: 1800, loop: true },
+  ];
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function animatePkt(cfg) {
+    var el = document.getElementById(cfg.pkt);
+    if (!el) return;
+    var start = null;
+    var delay = cfg.delay || 0;
+    var dur = cfg.dur;
+    var pts = cfg.path;
+
+    function step(ts) {
+      if (!start) start = ts + delay;
+      var elapsed = ts - start;
+      if (elapsed < 0) { requestAnimationFrame(step); return; }
+      var t = (elapsed % dur) / dur;
+
+      /* multi-segment path interpolation */
+      var segCount = pts.length - 1;
+      var segT = t * segCount;
+      var segIdx = Math.min(Math.floor(segT), segCount - 1);
+      var localT = segT - segIdx;
+      var p0 = pts[segIdx], p1 = pts[segIdx + 1];
+      el.setAttribute('cx', lerp(p0.x, p1.x, localT));
+      el.setAttribute('cy', lerp(p0.y, p1.y, localT));
+
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  paths.forEach(function(p) { animatePkt(p); });
+
+  /* Log events appear sequentially */
+  var evts = ['evt1','evt2','evt3','evt4'];
+  function showEvt(idx) {
+    if (idx >= evts.length) {
+      setTimeout(function() {
+        evts.forEach(function(id){ var el=document.getElementById(id); if(el)el.classList.remove('show'); });
+        setTimeout(function(){ showEvt(0); }, 400);
+      }, 2000);
+      return;
+    }
+    var el = document.getElementById(evts[idx]);
+    if (el) el.classList.add('show');
+    setTimeout(function(){ showEvt(idx+1); }, 900);
+  }
+
+  /* Start after card is visible */
+  var io = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) { showEvt(0); io.disconnect(); }
+  }, { threshold: 0.3 });
+  var card = svg.closest('.sc-card');
+  if (card) io.observe(card);
+})();
+
+/* ════════════════════════════════════════
+   FINOPS CHART
+════════════════════════════════════════ */
+(function() {
+  var canvas = document.getElementById('finops-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+
+  var DAYS = 30;
+  /* Generate cost data: starts high, drops after "optimization" at day 14 */
+  var costData = [], slaData = [], savData = [];
+  for (var i = 0; i < DAYS; i++) {
+    var base = i < 14 ? 1 : 0.62 + 0.03 * Math.sin(i * 0.5);
+    costData.push(base + (Math.random() - 0.5) * 0.04);
+    slaData.push(0.85 + 0.14 * (i / DAYS) + (Math.random() - 0.5) * 0.02);
+    savData.push(i < 14 ? 0 : (i - 14) / (DAYS - 14) * 0.38);
+  }
+
+  var scanX = 0;
+  var animating = false;
+
+  function draw(progress) {
+    var W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    var padL = 8, padR = 8, padT = 16, padB = 24;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+
+    function px(i) { return padL + (i / (DAYS - 1)) * plotW; }
+    function py(v, min, max) { return padT + plotH - ((v - min) / (max - min)) * plotH; }
+
+    var maxP = Math.floor(progress * DAYS);
+
+    /* Grid */
+    ctx.strokeStyle = 'rgba(20,150,255,0.06)';
+    ctx.lineWidth = 1;
+    for (var g = 0; g <= 4; g++) {
+      var gy = padT + (g / 4) * plotH;
+      ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(padL + plotW, gy); ctx.stroke();
+    }
+
+    /* Optimization marker at day 14 */
+    var optX = px(14);
+    ctx.strokeStyle = 'rgba(0,212,245,0.3)';
+    ctx.setLineDash([4,3]);
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(optX, padT); ctx.lineTo(optX, padT + plotH); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(0,212,245,0.6)';
+    ctx.font = '9px Consolas, monospace';
+    ctx.fillText('Optimisation', optX + 4, padT + 10);
+
+    if (maxP < 2) return;
+
+    /* Cost area fill */
+    ctx.beginPath();
+    ctx.moveTo(px(0), py(costData[0], 0, 1.5));
+    for (var i = 1; i < maxP; i++) ctx.lineTo(px(i), py(costData[i], 0, 1.5));
+    ctx.lineTo(px(maxP-1), padT + plotH);
+    ctx.lineTo(px(0), padT + plotH);
+    ctx.closePath();
+    var grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
+    grad.addColorStop(0, 'rgba(255,140,66,0.22)');
+    grad.addColorStop(1, 'rgba(255,140,66,0)');
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    /* Cost line */
+    ctx.beginPath();
+    ctx.moveTo(px(0), py(costData[0], 0, 1.5));
+    for (var i = 1; i < maxP; i++) ctx.lineTo(px(i), py(costData[i], 0, 1.5));
+    ctx.strokeStyle = '#FF8C42';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    /* SLA area fill */
+    ctx.beginPath();
+    ctx.moveTo(px(0), py(slaData[0], 0, 1.5));
+    for (var i = 1; i < maxP; i++) ctx.lineTo(px(i), py(slaData[i], 0, 1.5));
+    ctx.lineTo(px(maxP-1), padT + plotH);
+    ctx.lineTo(px(0), padT + plotH);
+    ctx.closePath();
+    var grad2 = ctx.createLinearGradient(0, padT, 0, padT + plotH);
+    grad2.addColorStop(0, 'rgba(0,196,140,0.15)');
+    grad2.addColorStop(1, 'rgba(0,196,140,0)');
+    ctx.fillStyle = grad2;
+    ctx.fill();
+
+    /* SLA line */
+    ctx.beginPath();
+    ctx.moveTo(px(0), py(slaData[0], 0, 1.5));
+    for (var i = 1; i < maxP; i++) ctx.lineTo(px(i), py(slaData[i], 0, 1.5));
+    ctx.strokeStyle = '#00C48C';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    /* Scan line */
+    var sx = px(Math.min(maxP - 1, DAYS - 1));
+    ctx.strokeStyle = 'rgba(20,150,255,0.5)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(sx, padT); ctx.lineTo(sx, padT + plotH); ctx.stroke();
+
+    /* Labels */
+    ctx.fillStyle = '#FF8C42';
+    ctx.font = 'bold 9px Segoe UI, sans-serif';
+    ctx.fillText('Cloud Cost', padL + 4, padT + 14);
+    ctx.fillStyle = '#00C48C';
+    ctx.fillText('SLA Coverage', padL + 4, padT + 26);
+
+    /* X axis labels */
+    ctx.fillStyle = 'rgba(107,130,176,0.7)';
+    ctx.font = '8px Segoe UI, sans-serif';
+    ctx.fillText('J-30', padL, padT + plotH + 14);
+    ctx.fillText('Aujourd\'hui', padL + plotW - 40, padT + plotH + 14);
+  }
+
+  function resize() {
+    var rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = 180;
+    draw(1);
+  }
+
+  var started = false;
+  var io = new IntersectionObserver(function(entries) {
+    if (!entries[0].isIntersecting || started) return;
+    started = true;
+    io.disconnect();
+    var start = null;
+    var DUR = 2200;
+    function animate(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / DUR, 1);
+      draw(p);
+      if (p < 1) requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  }, { threshold: 0.3 });
+  io.observe(canvas);
+
+  window.addEventListener('resize', resize);
+  resize();
 })();
 </script>
 </body>
